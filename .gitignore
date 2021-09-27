@@ -3,6 +3,8 @@
 **/bin/
 **/obj/
 **/Makefile
+ThirdParty/Include/
+ThirdParty/Lib/
 
 # -- Visual Studio -- #
 
