@@ -3,14 +3,17 @@
 project "Kreckanism"
     kind "StaticLib"
     language "C++"
+
     targetdir "bin/%{cfg.buildcfg}"
+    objdir "obj/%{cfg.buildcfg}"
 
     files { "**.h", "**.cpp" }
 
     includedirs
     {
         "%{wks.location}/Source/",
-        "%{wks.location}/ThirdParty/Include/"
+        "%{wks.location}/ThirdParty/glad/include",
+        "%{wks.location}/ThirdParty/glfw/include"
     }
 
     libdirs

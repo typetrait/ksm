@@ -1,12 +1,11 @@
 -- ~/premake5.lua
 
-include "ThirdParty/premake5.lua"
-
-build_thirdparty()
-
 workspace "Kreckanism"
     configurations { "Debug", "Release" }
     startproject "Demo"
+
+include "ThirdParty/glad.lua"
+include "ThirdParty/glfw.lua"
 
 include "Source/Kreckanism"
 include "Source/Demo"
