@@ -16,18 +16,11 @@ project "Kreckanism"
         "%{wks.location}/ThirdParty/glfw/include"
     }
 
-    libdirs
-    {
-        "%{wks.location}/ThirdParty/Lib/"
-    }
-
     filter "system:linux"
-
-        links { "glfw3", "glad", "GL", "rt", "m", "dl", "X11", "pthread" }
+        links { "glfw", "glad", "GL", "rt", "m", "dl", "X11", "pthread" }
 
     filter "system:windows"
-
-        links { "glfw3", "glad", "opengl32" }
+        links { "glfw", "glad", "opengl32" }
 
     filter "configurations:Debug"
         defines { "DEBUG" }

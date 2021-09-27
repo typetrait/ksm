@@ -4,6 +4,7 @@ project "glad"
     kind "StaticLib"
     language "C"
 
+    location "glad/"
     targetdir "glad/bin/%{cfg.buildcfg}"
     objdir "glad/obj/%{cfg.buildcfg}"
 
@@ -20,9 +21,7 @@ project "glad"
     }
 
     filter "configurations:Debug"
-        runtime "Debug"
         symbols "on"
 
     filter "configurations:Release"
-        runtime "Release"
         optimize "on"

@@ -3,6 +3,7 @@
 workspace "Kreckanism"
     configurations { "Debug", "Release" }
     startproject "Demo"
+    architecture "x86_64"
 
 include "ThirdParty/glad.lua"
 include "ThirdParty/glfw.lua"
