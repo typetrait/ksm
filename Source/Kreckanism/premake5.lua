@@ -5,7 +5,26 @@ project "Kreckanism"
     language "C++"
     targetdir "bin/%{cfg.buildcfg}"
 
-	files { "**.h", "**.cpp" }
+    files { "**.h", "**.cpp" }
+
+    includedirs
+    {
+        "%{wks.location}/Source/",
+        "%{wks.location}/ThirdParty/Include/"
+    }
+
+    libdirs
+    {
+        "%{wks.location}/ThirdParty/Lib/"
+    }
+
+    filter "system:linux"
+
+        links { "glfw3", "glad", "GL", "rt", "m", "dl", "X11", "pthread" }
+
+    filter "system:windows"
+
+        links { "glfw3", "glad", "opengl32" }
 
     filter "configurations:Debug"
         defines { "DEBUG" }

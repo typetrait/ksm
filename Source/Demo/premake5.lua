@@ -9,11 +9,22 @@ project "Demo"
     
     includedirs
     {
-        "%{wks.location}/Source/Kreckanism/",
+        "%{wks.location}/Source/",
         "%{wks.location}/ThirdParty/Include/"
     }
 
-    links { "Kreckanism" }
+    libdirs
+    {
+        "%{wks.location}/ThirdParty/Lib/"
+    }
+
+    filter "system:linux"
+
+        links { "Kreckanism", "glfw3", "glad", "GL", "rt", "m", "dl", "X11", "pthread" }
+
+    filter "system:windows"
+
+        links { "Kreckanism", "glfw3", "glad", "opengl32" }
 
     filter "configurations:Debug"
         defines { "DEBUG" }

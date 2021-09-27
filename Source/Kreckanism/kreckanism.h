@@ -1,11 +1,8 @@
-#include <string>
+#pragma once
 
 class Kreckanism
 {
 public:
-	Kreckanism();
-	~Kreckanism();
-
-private:
-	int id;
+    Kreckanism();
+    ~Kreckanism();
 };
