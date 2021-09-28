@@ -19,5 +19,5 @@ MSBuild.exe Kreckanism.sln
 Linux
 ```
 premake5 gmake2
-make config=release
+make
 ```
