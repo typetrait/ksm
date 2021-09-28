@@ -5,9 +5,9 @@
 class Demo : public Ksm::Application
 {
 public:
-    void Startup();
-    void Run();
-    void Exit();
+    void Startup() override;
+    void Run() override;
+    void Exit() override;
 private:
     Ksm::Window* window;
 };

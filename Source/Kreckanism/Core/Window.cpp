@@ -7,11 +7,6 @@
 
 #include "Kreckanism/Core/Logger.h"
 
-static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-    glViewport(0, 0, width, height);
-}
-
 namespace Ksm
 {
     Window::Window(int width, int height, std::string title) : width(width), height(height), title(title)
@@ -25,7 +20,7 @@ namespace Ksm
 
         if (window == NULL)
         {
-            KLOG_FAIL("open window");
+            KLOG_FAIL("Failed to create window.");
             glfwTerminate();
             return;
         }
@@ -34,13 +29,22 @@ namespace Ksm
 
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
         {
-            KLOG_FAIL("load glad");
+            KLOG_FAIL("Failed to load GLAD.");
             glfwTerminate();
             return;
         }
 
         glViewport(0, 0, 800, 600);
-        glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+        glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+        {
+            KLOG_INFO("key event!");
+        });
+
+        glfwSetFramebufferSizeCallback(window, [](GLFWwindow* window, int width, int height)
+        {
+            glViewport(0, 0, width, height);
+        });
     }
 
     Window::~Window()
@@ -53,8 +57,9 @@ namespace Ksm
         return glfwWindowShouldClose(window);
     }
 
-    void Window::SwapBuffers()
+    void Window::Update()
     {
+        glfwPollEvents();
         glfwSwapBuffers(window);
     }
 }

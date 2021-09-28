@@ -13,7 +13,7 @@ namespace Ksm
         Window(int, int, std::string);
         ~Window();
         bool ShouldClose();
-        void SwapBuffers();
+        void Update();
     private:
         int width;
         int height;
