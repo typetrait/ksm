@@ -12,11 +12,12 @@ git clone --recurse-submodules https://github.com/afxw/kreckanism.git
 
 Windows (Visual Studio)
 ```
-premake5 --os=windows vs2019
+premake5 vs2019
+MSBuild.exe Kreckanism.sln
 ```
 
 Linux
 ```
-premake5 --os=linux gmake2
+premake5 gmake2
 make config=release
 ```
