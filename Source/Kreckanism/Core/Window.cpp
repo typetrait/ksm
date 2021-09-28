@@ -5,7 +5,7 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
-#include "Kreckanism/Core/Log.h"
+#include "Kreckanism/Core/Logger.h"
 
 static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -23,13 +23,9 @@ namespace Ksm
 
         window = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
 
-        KLOG_INFO("info");
-        KLOG_WARN("warn");
-        KLOG_FAIL("fail");
-
         if (window == NULL)
         {
-            KLOG_FAIL("fail");
+            KLOG_FAIL("open window");
             glfwTerminate();
             return;
         }
@@ -38,7 +34,7 @@ namespace Ksm
 
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
         {
-            KLOG_FAIL("fail");
+            KLOG_FAIL("load glad");
             glfwTerminate();
             return;
         }
@@ -49,7 +45,7 @@ namespace Ksm
 
     Window::~Window()
     {
-
+        glfwTerminate();
     }
 
     bool Window::ShouldClose()
