@@ -1,12 +1,12 @@
 #include <iostream>
 
-#include "Kreckanism/kreckanism.h"
+#include "Kreckanism/Kreckanism.h"
 
 int main()
 {
     std::cout << "Demo!" << std::endl;
 
-    Kreckanism k;
+    Ksm::Kreckanism k;
 
     return 0;
 }
