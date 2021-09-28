@@ -1,12 +1,10 @@
-#include <iostream>
-
-#include "Kreckanism/Kreckanism.h"
+#include "Demo.h"
 
 int main()
 {
-    std::cout << "Demo!" << std::endl;
+    Demo demo;
 
-    Ksm::Kreckanism k;
-
-    return 0;
+    demo.Startup();
+    demo.Run();
+    demo.Exit();
 }
