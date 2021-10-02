@@ -10,7 +10,7 @@ namespace Ksm
 	{
 	public:
 		virtual EventType GetType() const = 0;
-		virtual std::string GetName() const { return "Event!"; }
+		virtual std::string GetName() const = 0;
 
 	private:
 		
