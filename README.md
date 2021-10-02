@@ -5,7 +5,7 @@ Game Engine.
 ## Cloning
 
 ```
-git clone --recurse-submodules https://github.com/afxw/kreckanism.git
+git clone --recursive https://github.com/afxw/kreckanism.git
 ```
 
 ## Building
