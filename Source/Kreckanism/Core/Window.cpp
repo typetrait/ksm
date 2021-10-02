@@ -48,9 +48,9 @@ namespace Ksm
             {
 				case GLFW_PRESS:
 				{
-                    KeyPressedEvent e(key);
-                    self.eventCallback(e);
-                    return;
+					KeyPressedEvent e(key);
+					self.eventCallback(e);
+					return;
 				}
                 case GLFW_REPEAT:
 				{
