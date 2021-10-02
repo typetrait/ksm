@@ -8,6 +8,8 @@ public:
     void Startup() override;
     void Run() override;
     void Exit() override;
+
+    void OnEvent(Ksm::Event& e);
 private:
     Ksm::Window* window;
 };

@@ -1,8 +1,20 @@
 #include "Demo/Demo.h"
 
+#include <string>
+#include <sstream>
+
+#include "Kreckanism/Event/WindowResizeEvent.h"
+#include "Kreckanism/Event/KeyPressedEvent.h"
+#include "Kreckanism/Event/EventDispatcher.h"
+#include "Kreckanism/Core/KeyCode.h"
+
 void Demo::Startup()
 {
     window = new Ksm::Window(800, 600, "Krecka");
+    window->SetEventCallback([this](Ksm::Event& e)
+    {
+        OnEvent(e);
+    });
 }
 
 void Demo::Run()
@@ -80,6 +92,24 @@ void Demo::Run()
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
     glDeleteProgram(shaderProgram);
+}
+
+void Demo::OnEvent(Ksm::Event& e)
+{
+    Ksm::EventDispatcher dispatcher(e);
+    dispatcher.Dispatch<Ksm::WindowResizeEvent>([](const Ksm::WindowResizeEvent& ev)
+    {
+        std::stringstream fmt;
+        fmt << "Window resized: Width=" << ev.GetWidth() << " Height=" << ev.GetHeight();
+        KLOG_INFO(fmt.str());
+    });
+
+    dispatcher.Dispatch<Ksm::KeyPressedEvent>([](const Ksm::KeyPressedEvent& ev)
+    {
+        std::stringstream fmt;
+        fmt << "Key pressed: KeyCode= " << ev.GetKeyCode();
+        KLOG_INFO(fmt.str());
+    });
 }
 
 void Demo::Exit()
