@@ -13,7 +13,8 @@ project "Demo"
     {
         "%{wks.location}/Source/",
         "%{wks.location}/ThirdParty/glad/include",
-        "%{wks.location}/ThirdParty/glfw/include"
+        "%{wks.location}/ThirdParty/glfw/include",
+	"%{wks.location}/ThirdParty/glm"
     }
 
     filter "system:linux"
