@@ -18,9 +18,9 @@ namespace Ksm
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-        window = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
+        window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 
-        if (window == NULL)
+        if (window == nullptr)
         {
             KLOG_FAIL("Failed to create window.");
             glfwTerminate();
@@ -80,6 +80,11 @@ namespace Ksm
     void Window::SetEventCallback(const std::function<void(Event&)>& callback)
     {
         this->eventCallback = callback;
+    }
+
+    void Window::SetTitle(std::string title) const
+    {
+        glfwSetWindowTitle(window, title.c_str());
     }
 
     bool Window::ShouldClose() const
