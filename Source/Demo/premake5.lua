@@ -14,14 +14,15 @@ project "Demo"
         "%{wks.location}/Source/",
         "%{wks.location}/ThirdParty/glad/include",
         "%{wks.location}/ThirdParty/glfw/include",
-	"%{wks.location}/ThirdParty/glm"
+        "%{wks.location}/ThirdParty/glm",
+        "%{wks.location}/ThirdParty/imgui"
     }
 
     filter "system:linux"
-        links { "Kreckanism", "glfw", "glad", "GL", "rt", "m", "dl", "X11", "pthread" }
+        links { "Kreckanism", "glfw", "glad", "imgui", "GL", "rt", "m", "dl", "X11", "pthread" }
 
     filter "system:windows"
-        links { "Kreckanism", "glfw", "glad", "opengl32" }
+        links { "Kreckanism", "glfw", "glad", "imgui", "opengl32" }
 
     filter "configurations:Debug"
         defines { "DEBUG" }

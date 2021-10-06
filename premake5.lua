@@ -7,6 +7,7 @@ workspace "Kreckanism"
 
 include "ThirdParty/glad.lua"
 include "ThirdParty/glfw.lua"
+include "ThirdParty/imgui.lua"
 
 include "Source/Kreckanism"
 include "Source/Demo"
