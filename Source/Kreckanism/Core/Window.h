@@ -15,6 +15,7 @@ namespace Ksm
         Window(int width, int height, const std::string& title);
         ~Window();
         void SetEventCallback(const std::function<void(Event&)>& callback);
+        GLFWwindow* GetWindow() const;
         void SetTitle(std::string title) const;
         bool ShouldClose() const;
         void Update() const;

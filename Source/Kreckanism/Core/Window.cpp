@@ -82,6 +82,11 @@ namespace Ksm
         this->eventCallback = callback;
     }
 
+    GLFWwindow* Window::GetWindow() const
+    {
+        return window;
+    }
+
     void Window::SetTitle(std::string title) const
     {
         glfwSetWindowTitle(window, title.c_str());
