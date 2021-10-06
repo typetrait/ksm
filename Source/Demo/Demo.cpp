@@ -2,6 +2,9 @@
 
 #include <sstream>
 
+#include "imgui.h"
+#include "backends/imgui_impl_glfw.h"
+#include "backends/imgui_impl_opengl3.h"
 #include "glm/glm.hpp"
 
 #include "Kreckanism/Event/WindowResizeEvent.h"
@@ -9,6 +12,7 @@
 #include "Kreckanism/Event/EventDispatcher.h"
 #include "Kreckanism/Graphics/IndexBuffer.h"
 #include "Kreckanism/Graphics/Shader.h"
+#include "Kreckanism/Graphics/VertexArray.h"
 #include "Kreckanism/Graphics/VertexBuffer.h"
 
 void Demo::Startup()
@@ -26,9 +30,14 @@ void Demo::Startup()
 
 void Demo::Run()
 {
-    unsigned int VAO;
-    glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+
+    ImGui::StyleColorsDark();
+
+    ImGui_ImplGlfw_InitForOpenGL(window->GetWindow(), true);
+    ImGui_ImplOpenGL3_Init("#version 330");
 
     float vertices[] =
     {
@@ -43,10 +52,13 @@ void Demo::Run()
         0, 1, 2, 2, 3, 0
     };
 
+    const Ksm::VertexArray vao;
+    vao.Bind();
+
     const Ksm::VertexBuffer vbo(vertices, sizeof(vertices));
     vbo.Bind();
 
-    const Ksm::IndexBuffer ibo(indices, 6);
+    const Ksm::IndexBuffer ibo(indices, sizeof(indices) / sizeof(unsigned int));
     ibo.Bind();
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
@@ -60,12 +72,36 @@ void Demo::Run()
         glClearColor(0.2f, 0.5f, 0.6f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
+        {
+            static float f = 0.0f;
+            static int counter = 0;
+
+            ImGui::Begin("Krecka Hax v1.0");
+
+            ImGui::Text("Grakour DESTROYER");
+
+            ImGui::SliderFloat("Amount", &f, 0.0f, 1.0f);
+
+            if (ImGui::Button("Destroy"))
+                counter++;
+            //ImGui::SameLine();
+            //ImGui::Text("counter = %d", counter);
+
+            //ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+            ImGui::End();
+        }
+
+        glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(unsigned int), GL_UNSIGNED_INT, nullptr);
+
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         window->Update();
     }
-
-    glDeleteVertexArrays(1, &VAO);
 }
 
 void Demo::OnEvent(Ksm::Event& e)
@@ -88,5 +124,9 @@ void Demo::OnEvent(Ksm::Event& e)
 
 void Demo::Exit()
 {
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+
     delete window;
 }
