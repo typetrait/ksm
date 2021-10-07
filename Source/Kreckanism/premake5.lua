@@ -3,6 +3,7 @@
 project "Kreckanism"
     kind "StaticLib"
     language "C++"
+    cppdialect "C++20"
 
     targetdir "bin/%{cfg.buildcfg}"
     objdir "obj/%{cfg.buildcfg}"

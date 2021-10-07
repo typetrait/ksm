@@ -3,12 +3,13 @@
 project "Demo"
     kind "ConsoleApp"
     language "C++"
+    cppdialect "C++20"
 
     targetdir "bin/%{cfg.buildcfg}"
     objdir "obj/%{cfg.buildcfg}"
 
     files { "**.h", "**.cpp" }
-    
+
     includedirs
     {
         "%{wks.location}/Source/",
