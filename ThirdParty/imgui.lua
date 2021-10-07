@@ -4,9 +4,9 @@ project "imgui"
     kind "StaticLib"
     language "C++"
 
-    location "imgui/"
-    targetdir "imgui/bin/%{cfg.buildcfg}"
-    objdir "imgui/obj/%{cfg.buildcfg}"
+    location "imgui/build"
+    targetdir "imgui/build/bin/%{cfg.buildcfg}"
+    objdir "imgui/build/obj/%{cfg.buildcfg}"
 
     files
     {
