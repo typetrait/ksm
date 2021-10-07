@@ -78,20 +78,16 @@ void Demo::Run()
 
         {
             static float f = 0.0f;
-            static int counter = 0;
 
             ImGui::Begin("Krecka Hax v1.0");
 
             ImGui::Text("Grakour DESTROYER");
-
             ImGui::SliderFloat("Amount", &f, 0.0f, 1.0f);
 
-            if (ImGui::Button("Destroy"))
-                counter++;
-            //ImGui::SameLine();
-            //ImGui::Text("counter = %d", counter);
+            ImGui::Button("Destroy");
 
-            //ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+            ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+
             ImGui::End();
         }
 
