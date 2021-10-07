@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include <cstdlib>
+
 #include "Kreckanism/Graphics/Buffer.h"
 
 namespace Ksm
