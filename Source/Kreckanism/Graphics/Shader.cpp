@@ -4,8 +4,8 @@
 
 namespace Ksm
 {
-	Shader::Shader(const std::string& filepath)
-	{
+    Shader::Shader(const std::string& filepath)
+    {
         const char* vertexShaderSource =
             "#version 330 core\n"
             "layout (location = 0) in vec3 aPos;\n"
@@ -40,15 +40,15 @@ namespace Ksm
 
         glDeleteShader(vertexShader);
         glDeleteShader(fragmentShader);
-	}
+    }
 
-	Shader::~Shader()
-	{
+    Shader::~Shader()
+    {
         glDeleteProgram(id);
-	}
+    }
 
-	void Shader::Use() const
-	{
+    void Shader::Use() const
+    {
         glUseProgram(id);
-	}
+    }
 }

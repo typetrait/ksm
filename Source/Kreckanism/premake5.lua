@@ -14,7 +14,7 @@ project "Kreckanism"
         "%{wks.location}/Source/",
         "%{wks.location}/ThirdParty/glad/include",
         "%{wks.location}/ThirdParty/glfw/include",
-	"%{wks.location}/ThirdParty/glm",
+        "%{wks.location}/ThirdParty/glm",
         "%{wks.location}/ThirdParty/imgui"
     }
 

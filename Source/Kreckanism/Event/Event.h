@@ -6,13 +6,13 @@
 
 namespace Ksm
 {
-	class Event
-	{
-	public:
-		virtual EventType GetType() const = 0;
-		virtual std::string GetName() const = 0;
+    class Event
+    {
+    public:
+        virtual EventType GetType() const = 0;
+        virtual std::string GetName() const = 0;
 
-	private:
-		
-	};
+    private:
+        
+    };
 }

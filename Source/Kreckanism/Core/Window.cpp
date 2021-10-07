@@ -46,18 +46,18 @@ namespace Ksm
 
             switch (action)
             {
-				case GLFW_PRESS:
-				{
-					KeyPressedEvent e(key);
-					self.eventCallback(e);
-					return;
-				}
-                case GLFW_REPEAT:
-				{
+                case GLFW_PRESS:
+                {
                     KeyPressedEvent e(key);
                     self.eventCallback(e);
                     return;
-				}
+                }
+                case GLFW_REPEAT:
+                {
+                    KeyPressedEvent e(key);
+                    self.eventCallback(e);
+                    return;
+                }
             }
         });
 

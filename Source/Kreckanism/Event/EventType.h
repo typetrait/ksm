@@ -2,14 +2,14 @@
 
 namespace Ksm
 {
-	enum class EventType
-	{
-		// Window & context events
-		WindowResize,
+    enum class EventType
+    {
+        // Window & context events
+        WindowResize,
 
-		// Keyboard events
-		KeyPressed,
-		KeyReleased,
-		KeyTyped
-	};
+        // Keyboard events
+        KeyPressed,
+        KeyReleased,
+        KeyTyped
+    };
 }

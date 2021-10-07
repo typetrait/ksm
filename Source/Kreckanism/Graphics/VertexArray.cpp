@@ -4,23 +4,23 @@
 
 namespace Ksm
 {
-	VertexArray::VertexArray()
-	{
-		glGenVertexArrays(1, &id);
-	}
+    VertexArray::VertexArray()
+    {
+        glGenVertexArrays(1, &id);
+    }
 
-	VertexArray::~VertexArray()
-	{
-		glDeleteVertexArrays(1, &id);
-	}
+    VertexArray::~VertexArray()
+    {
+        glDeleteVertexArrays(1, &id);
+    }
 
-	void VertexArray::Bind() const
-	{
-		glBindVertexArray(id);
-	}
+    void VertexArray::Bind() const
+    {
+        glBindVertexArray(id);
+    }
 
-	void VertexArray::Unbind() const
-	{
-		glBindVertexArray(0);
-	}
+    void VertexArray::Unbind() const
+    {
+        glBindVertexArray(0);
+    }
 }
