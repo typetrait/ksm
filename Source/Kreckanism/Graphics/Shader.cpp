@@ -1,35 +1,42 @@
 #include "Kreckanism/Graphics/Shader.h"
 
+#include <filesystem>
+#include <fstream>
+
 #include "glad/glad.h"
 
 namespace Ksm
 {
-    Shader::Shader(const std::string& filepath)
+    Shader::Shader(const std::string& vertexShaderPath, const std::string& fragmentShaderPath)
     {
-        const char* vertexShaderSource =
-            "#version 330 core\n"
-            "layout (location = 0) in vec3 aPos;\n"
-            "void main()\n"
-            "{\n"
-            "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-            "}\0";
+        auto vertexPath = std::filesystem::path(vertexShaderPath);
+        auto fragmentPath = std::filesystem::path(fragmentShaderPath);
 
-        const char* fragmentShaderSource =
-            "#version 330 core\n"
-            "out vec4 FragColor;\n"
-            "void main()\n"
-            "{\n"
-            "    FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-            "}\0";
+        auto vertexFileSize = std::filesystem::file_size(vertexPath);
+        auto fragmentFileSize = std::filesystem::file_size(fragmentPath);
+
+        std::string vertexShaderSource(vertexFileSize, '\0');
+        std::string fragmentShaderSource(fragmentFileSize, '\0');
+
+        std::ifstream vertexFile(vertexPath, std::ios::in | std::ios::binary);
+        vertexFile.read(&vertexShaderSource[0], vertexFileSize);
+        vertexFile.close();
+
+        std::ifstream fragmentFile(fragmentPath, std::ios::in | std::ios::binary);
+        fragmentFile.read(&fragmentShaderSource[0], fragmentFileSize);
+        fragmentFile.close();
+
+        const char* vertexShaderSource2 = vertexShaderSource.c_str();
+        const char* fragmentShaderSource2 = fragmentShaderSource.c_str();
 
         const unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
-        glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
+        glShaderSource(vertexShader, 1, &vertexShaderSource2, nullptr);
         glCompileShader(vertexShader);
 
         const unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-        glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
+        glShaderSource(fragmentShader, 1, &fragmentShaderSource2, nullptr);
         glCompileShader(fragmentShader);
 
         id = glCreateProgram();

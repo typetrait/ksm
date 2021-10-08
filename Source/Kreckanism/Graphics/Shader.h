@@ -7,7 +7,7 @@ namespace Ksm
     class Shader
     {
     public:
-        Shader(const std::string& filepath);
+        Shader(const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
         ~Shader();
         void Use() const;
     private:
