@@ -12,6 +12,7 @@
 #include "Kreckanism/Event/EventDispatcher.h"
 #include "Kreckanism/Graphics/IndexBuffer.h"
 #include "Kreckanism/Graphics/Shader.h"
+#include "Kreckanism/Graphics/Vertex.h"
 #include "Kreckanism/Graphics/VertexArray.h"
 #include "Kreckanism/Graphics/VertexBuffer.h"
 
@@ -39,12 +40,12 @@ void Demo::Run()
     ImGui_ImplGlfw_InitForOpenGL(window->GetWindow(), true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
-    float vertices[] =
+    Ksm::Vertex vertices[] =
     {
-        -0.5f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,
-        0.5f,  0.5f, 0.0f,
-        -0.5f, 0.5f, 0.0f
+        {{ -0.5f, -0.5f, 0.0f }, {1.0f, 0.0f, 0.0f}},
+        {{ 0.5f, -0.5f, 0.0f }, {0.0f, 1.0f, 0.0f}},
+        {{ 0.5f,  0.5f, 0.0f }, {0.0f, 0.0f, 1.0f}},
+        {{ -0.5f, 0.5f, 0.0f }, {1.0f, 1.0f, 1.0f}}
     };
 
     unsigned int indices[] =
@@ -55,16 +56,19 @@ void Demo::Run()
     const Ksm::VertexArray vao;
     vao.Bind();
 
-    const Ksm::VertexBuffer vbo(vertices, sizeof(vertices));
+    const Ksm::VertexBuffer vbo(reinterpret_cast<float*>(vertices), sizeof(vertices));
     vbo.Bind();
 
     const Ksm::IndexBuffer ibo(indices, sizeof(indices) / sizeof(unsigned int));
     ibo.Bind();
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Ksm::Vertex), nullptr);
     glEnableVertexAttribArray(0);
 
-    const Ksm::Shader basic("");
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Ksm::Vertex), (void*)offsetof(Ksm::Vertex, color));
+    glEnableVertexAttribArray(1);
+
+    const Ksm::Shader basic("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
     basic.Use();
 
     while (!window->ShouldClose())
