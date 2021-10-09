@@ -68,7 +68,7 @@ void Demo::Run()
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Ksm::Vertex), (void*)offsetof(Ksm::Vertex, color));
     glEnableVertexAttribArray(1);
 
-    const Ksm::Shader basic("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
+    const Ksm::Shader basic("Assets/Shaders/Basic.vert", "Assets/Shaders/Basic.frag");
     basic.Use();
 
     while (!window->ShouldClose())
