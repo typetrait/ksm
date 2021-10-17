@@ -4,7 +4,7 @@
 
 namespace Ksm
 {
-    VertexArray::VertexArray()
+    VertexArray::VertexArray() : indexBuffer()
     {
         glGenVertexArrays(1, &id);
     }
@@ -22,5 +22,10 @@ namespace Ksm
     void VertexArray::Unbind() const
     {
         glBindVertexArray(0);
+    }
+
+    void VertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer)
+    {
+        this->indexBuffer = indexBuffer;
     }
 }

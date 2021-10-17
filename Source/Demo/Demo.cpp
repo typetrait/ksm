@@ -10,6 +10,7 @@
 #include "Kreckanism/Event/WindowResizeEvent.h"
 #include "Kreckanism/Event/KeyPressedEvent.h"
 #include "Kreckanism/Event/EventDispatcher.h"
+#include "Kreckanism/Graphics/BufferLayout.h"
 #include "Kreckanism/Graphics/IndexBuffer.h"
 #include "Kreckanism/Graphics/Shader.h"
 #include "Kreckanism/Graphics/Vertex.h"
@@ -53,20 +54,35 @@ void Demo::Run()
         0, 1, 2, 2, 3, 0
     };
 
-    const Ksm::VertexArray vao;
+    Ksm::VertexArray vao;
     vao.Bind();
 
-    const Ksm::VertexBuffer vbo(reinterpret_cast<float*>(vertices), sizeof(vertices));
+    Ksm::VertexBuffer vbo(reinterpret_cast<float*>(vertices), sizeof(vertices));
     vbo.Bind();
 
-    const Ksm::IndexBuffer ibo(indices, sizeof(indices) / sizeof(unsigned int));
-    ibo.Bind();
+    auto indexBuffer = std::make_shared<Ksm::IndexBuffer>(indices, sizeof(indices) / sizeof(unsigned int));
+    indexBuffer->Bind();
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Ksm::Vertex), nullptr);
-    glEnableVertexAttribArray(0);
+    vao.SetIndexBuffer(indexBuffer);
 
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Ksm::Vertex), (void*)offsetof(Ksm::Vertex, color));
-    glEnableVertexAttribArray(1);
+    Ksm::BufferLayout layout;
+    layout.PushAttribute<glm::vec3>();
+    layout.PushAttribute<glm::vec3>();
+
+    vbo.SetLayout(layout);
+
+    unsigned int stride = layout.GetStride();
+
+    unsigned int index = 0;
+    unsigned int offset = 0;
+    for (const auto& attribute : layout.GetAttributes())
+    {
+        glVertexAttribPointer(index, attribute.count, attribute.type, GL_FALSE, stride, (void*)offset);
+        glEnableVertexAttribArray(index);
+
+        index++;
+        offset += attribute.size;
+    }
 
     const Ksm::Shader basic("Assets/Shaders/Basic.vert", "Assets/Shaders/Basic.frag");
     basic.Use();

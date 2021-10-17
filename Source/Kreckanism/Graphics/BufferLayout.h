@@ -2,6 +2,9 @@
 
 #include <vector>
 
+#include "glad/glad.h"
+#include "glm/glm.hpp"
+
 #include "Kreckanism/Graphics/VertexAttribute.h"
 
 namespace Ksm
@@ -9,8 +12,35 @@ namespace Ksm
     class BufferLayout
     {
     public:
-        BufferLayout(std::initializer_list<VertexAttribute> attributes);
+        unsigned int GetStride() const;
         const std::vector<VertexAttribute>& GetAttributes() const;
+
+        template<typename T>
+        void PushAttribute()
+        {
+        }
+
+        template<>
+        void PushAttribute<glm::vec2>()
+        {
+            attributes.push_back(
+            {
+                .type = GL_FLOAT,
+                .count = 2,
+                .size = sizeof(glm::vec2)
+            });
+        }
+
+        template<>
+        void PushAttribute<glm::vec3>()
+        {
+            attributes.push_back(
+            {
+                .type = GL_FLOAT,
+                .count = 3,
+                .size = sizeof(glm::vec3)
+            });
+        }
     private:
         std::vector<VertexAttribute> attributes;
     };

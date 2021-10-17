@@ -2,11 +2,15 @@
 
 namespace Ksm
 {
-    BufferLayout::BufferLayout(std::initializer_list<VertexAttribute> attributes) : attributes(attributes)
+    unsigned int BufferLayout::GetStride() const
     {
+        unsigned int stride = 0;
         for (auto& attribute : attributes)
         {
+            stride += attribute.size;
         }
+
+        return stride;
     }
 
     const std::vector<VertexAttribute>& BufferLayout::GetAttributes() const
