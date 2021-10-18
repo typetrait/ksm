@@ -54,35 +54,23 @@ void Demo::Run()
         0, 1, 2, 2, 3, 0
     };
 
-    Ksm::VertexArray vao;
-    vao.Bind();
+    Ksm::VertexArray vertexArray;
+    vertexArray.Bind();
 
-    Ksm::VertexBuffer vbo(reinterpret_cast<float*>(vertices), sizeof(vertices));
-    vbo.Bind();
+    auto vertexBuffer = std::make_shared<Ksm::VertexBuffer>(reinterpret_cast<float*>(vertices), sizeof(vertices));
+    vertexBuffer->Bind();
 
     auto indexBuffer = std::make_shared<Ksm::IndexBuffer>(indices, sizeof(indices) / sizeof(unsigned int));
     indexBuffer->Bind();
-
-    vao.SetIndexBuffer(indexBuffer);
 
     Ksm::BufferLayout layout;
     layout.PushAttribute<glm::vec3>();
     layout.PushAttribute<glm::vec3>();
 
-    vbo.SetLayout(layout);
+    vertexBuffer->SetLayout(layout);
 
-    unsigned int stride = layout.GetStride();
-
-    unsigned int index = 0;
-    unsigned int offset = 0;
-    for (const auto& attribute : layout.GetAttributes())
-    {
-        glVertexAttribPointer(index, attribute.count, attribute.type, GL_FALSE, stride, (void*)offset);
-        glEnableVertexAttribArray(index);
-
-        index++;
-        offset += attribute.size;
-    }
+    vertexArray.AddVertexBuffer(vertexBuffer);
+    vertexArray.SetIndexBuffer(indexBuffer);
 
     const Ksm::Shader basic("Assets/Shaders/Basic.vert", "Assets/Shaders/Basic.frag");
     basic.Use();
