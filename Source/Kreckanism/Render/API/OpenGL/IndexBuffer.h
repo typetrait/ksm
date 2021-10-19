@@ -2,7 +2,7 @@
 
 #include <cstdlib>
 
-#include "Kreckanism/Graphics/Buffer.h"
+#include <Kreckanism/Render/API/OpenGL/Buffer.h>
 
 namespace Ksm
 {

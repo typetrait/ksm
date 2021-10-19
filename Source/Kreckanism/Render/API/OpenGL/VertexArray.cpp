@@ -1,6 +1,6 @@
-﻿#include "Kreckanism/Graphics/VertexArray.h"
+﻿#include <Kreckanism/Render/API/OpenGL/VertexArray.h>
 
-#include "glad/glad.h"
+#include <glad/glad.h>
 
 namespace Ksm
 {

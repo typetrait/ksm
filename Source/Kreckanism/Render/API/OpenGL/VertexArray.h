@@ -2,8 +2,8 @@
 
 #include <memory>
 
-#include "Kreckanism/Graphics/VertexBuffer.h"
-#include "Kreckanism/Graphics/IndexBuffer.h"
+#include <Kreckanism/Render/API/OpenGL/VertexBuffer.h>
+#include <Kreckanism/Render/API/OpenGL/IndexBuffer.h>
 
 namespace Ksm
 {

@@ -1,6 +1,6 @@
-﻿#include "Kreckanism/Graphics/Buffer.h"
+﻿#include <Kreckanism/Render/API/OpenGL/Buffer.h>
 
-#include "glad/glad.h"
+#include <glad/glad.h>
 
 namespace Ksm
 {

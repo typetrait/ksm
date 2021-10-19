@@ -1,6 +1,6 @@
-﻿#include "Kreckanism/Graphics/VertexBuffer.h"
+﻿#include <Kreckanism/Render/API/OpenGL/VertexBuffer.h>
 
-#include "glad/glad.h"
+#include <glad/glad.h>
 
 namespace Ksm
 {

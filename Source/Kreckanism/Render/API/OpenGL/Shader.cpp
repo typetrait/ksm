@@ -1,9 +1,9 @@
-#include "Kreckanism/Graphics/Shader.h"
+#include <Kreckanism/Render/API/OpenGL/Shader.h>
 
 #include <filesystem>
 #include <fstream>
 
-#include "glad/glad.h"
+#include <glad/glad.h>
 
 namespace Ksm
 {
@@ -54,8 +54,43 @@ namespace Ksm
         glDeleteProgram(id);
     }
 
-    void Shader::Use() const
+    void Shader::Bind() const
     {
         glUseProgram(id);
+    }
+
+    void Shader::Unbind() const
+    {
+        glUseProgram(0);
+    }
+
+    void Shader::SetUniform(const std::string& name, const glm::vec2& vector) const
+    {
+        auto location = glGetUniformLocation(id, name.c_str());
+        glUniform2f(location, vector[0], vector[1]);
+    }
+
+    void Shader::SetUniform(const std::string& name, const glm::vec3& vector) const
+    {
+        auto location = glGetUniformLocation(id, name.c_str());
+        glUniform3f(location, vector[0], vector[1], vector[2]);
+    }
+
+    void Shader::SetUniform(const std::string& name, const glm::vec4& vector) const
+    {
+        auto location = glGetUniformLocation(id, name.c_str());
+        glUniform4f(location, vector[0], vector[1], vector[2], vector[3]);
+    }
+
+    void Shader::SetUniform(const std::string& name, const glm::mat3& matrix) const
+    {
+        auto location = glGetUniformLocation(id, name.c_str());
+        glUniformMatrix3fv(location, 1, false, &matrix[0][0]);
+    }
+
+    void Shader::SetUniform(const std::string& name, const glm::mat4& matrix) const
+    {
+        auto location = glGetUniformLocation(id, name.c_str());
+        glUniformMatrix4fv(location, 1, false, &matrix[0][0]);
     }
 }

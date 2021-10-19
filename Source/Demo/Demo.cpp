@@ -2,20 +2,21 @@
 
 #include <sstream>
 
-#include "imgui.h"
-#include "backends/imgui_impl_glfw.h"
-#include "backends/imgui_impl_opengl3.h"
-#include "glm/glm.hpp"
+#include <imgui.h>
+#include <backends/imgui_impl_glfw.h>
+#include <backends/imgui_impl_opengl3.h>
+#include <glm/glm.hpp>
 
-#include "Kreckanism/Event/WindowResizeEvent.h"
-#include "Kreckanism/Event/KeyPressedEvent.h"
-#include "Kreckanism/Event/EventDispatcher.h"
-#include "Kreckanism/Graphics/BufferLayout.h"
-#include "Kreckanism/Graphics/IndexBuffer.h"
-#include "Kreckanism/Graphics/Shader.h"
-#include "Kreckanism/Graphics/Vertex.h"
-#include "Kreckanism/Graphics/VertexArray.h"
-#include "Kreckanism/Graphics/VertexBuffer.h"
+#include <Kreckanism/Event/WindowResizeEvent.h>
+#include <Kreckanism/Event/KeyPressedEvent.h>
+#include <Kreckanism/Event/EventDispatcher.h>
+#include <Kreckanism/Render/API/OpenGL/BufferLayout.h>
+#include <Kreckanism/Render/API/OpenGL/IndexBuffer.h>
+#include <Kreckanism/Render/API/OpenGL/Shader.h>
+#include <Kreckanism/Render/API/OpenGL/VertexArray.h>
+#include <Kreckanism/Render/API/OpenGL/VertexBuffer.h>
+#include <Kreckanism/Render/Vertex.h>
+#include <Kreckanism/Render/PerspectiveCamera.h>
 
 void Demo::Startup()
 {
@@ -72,8 +73,10 @@ void Demo::Run()
     vertexArray.AddVertexBuffer(vertexBuffer);
     vertexArray.SetIndexBuffer(indexBuffer);
 
-    const Ksm::Shader basic("Assets/Shaders/Basic.vert", "Assets/Shaders/Basic.frag");
-    basic.Use();
+    const Ksm::Shader basicShader("Assets/Shaders/Basic.vert", "Assets/Shaders/Basic.frag");
+    basicShader.Bind();
+
+    Ksm::PerspectiveCamera camera;
 
     while (!window->ShouldClose())
     {

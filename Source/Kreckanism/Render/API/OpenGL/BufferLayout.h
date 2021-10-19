@@ -2,10 +2,10 @@
 
 #include <vector>
 
-#include "glad/glad.h"
-#include "glm/glm.hpp"
+#include <glad/glad.h>
+#include <glm/glm.hpp>
 
-#include "Kreckanism/Graphics/VertexAttribute.h"
+#include <Kreckanism/Render/API/OpenGL/VertexAttribute.h>
 
 namespace Ksm
 {

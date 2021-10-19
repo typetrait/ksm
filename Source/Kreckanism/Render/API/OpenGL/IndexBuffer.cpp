@@ -1,6 +1,6 @@
-﻿#include "Kreckanism/Graphics/IndexBuffer.h"
+﻿#include <Kreckanism/Render/API/OpenGL/IndexBuffer.h>
 
-#include "glad/glad.h"
+#include <glad/glad.h>
 
 namespace Ksm
 {

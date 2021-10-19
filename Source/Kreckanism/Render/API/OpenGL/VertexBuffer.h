@@ -2,8 +2,8 @@
 
 #include <cstdlib>
 
-#include "Kreckanism/Graphics/Buffer.h"
-#include "Kreckanism/Graphics/BufferLayout.h"
+#include <Kreckanism/Render/API/OpenGL/Buffer.h>
+#include <Kreckanism/Render/API/OpenGL/BufferLayout.h>
 
 namespace Ksm
 {
