@@ -1,4 +1,4 @@
-#include "Kreckanism/Core/Logger.h"
+#include <Kreckanism/Core/Logger.h>
 
 #include <iostream>
 #include <string>

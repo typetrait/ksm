@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Kreckanism/Event/Event.h"
+#include <Kreckanism/Event/Event.h>
 
 namespace Ksm
 {

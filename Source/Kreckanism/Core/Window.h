@@ -3,9 +3,9 @@
 #include <string>
 #include <functional>
 
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
-#include "Kreckanism/Event/Event.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <Kreckanism/Event/Event.h>
 
 namespace Ksm
 {

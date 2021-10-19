@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Kreckanism/Event/EventType.h"
+#include <Kreckanism/Event/EventType.h>
 
 namespace Ksm
 {

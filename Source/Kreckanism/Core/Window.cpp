@@ -1,13 +1,13 @@
-#include "Kreckanism/Core/Window.h"
+#include <Kreckanism/Core/Window.h>
 
 #include <string>
 
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
-#include "Kreckanism/Core/Logger.h"
-#include "Kreckanism/Event/KeyPressedEvent.h"
-#include "Kreckanism/Event/WindowResizeEvent.h"
+#include <Kreckanism/Core/Logger.h>
+#include <Kreckanism/Event/KeyPressedEvent.h>
+#include <Kreckanism/Event/WindowResizeEvent.h>
 
 namespace Ksm
 {
