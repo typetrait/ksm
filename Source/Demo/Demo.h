@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Kreckanism/Core/Kreckanism.h"
+#include <Kreckanism/Core/Kreckanism.h>
 
 class Demo : public Ksm::Application
 {
