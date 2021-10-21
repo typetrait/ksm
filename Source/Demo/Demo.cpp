@@ -20,6 +20,7 @@
 #include <Kreckanism/Render/Vertex.h>
 #include <Kreckanism/Render/PerspectiveCamera.h>
 #include <Kreckanism/Render/Renderer.h>
+#include <Kreckanism/Render/Mesh.h>
 
 void Demo::Startup()
 {
@@ -47,36 +48,7 @@ void Demo::Run()
     ImGui_ImplGlfw_InitForOpenGL(window->GetWindow(), true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
-    Ksm::Vertex vertices[] =
-    {
-        {{ -0.5f, -0.5f, 0.0f }, {1.0f, 0.0f, 0.0f}},
-        {{ 0.5f, -0.5f, 0.0f }, {0.0f, 1.0f, 0.0f}},
-        {{ 0.5f,  0.5f, 0.0f }, {0.0f, 0.0f, 1.0f}},
-        {{ -0.5f, 0.5f, 0.0f }, {1.0f, 1.0f, 1.0f}}
-    };
-
-    unsigned int indices[] =
-    {
-        0, 1, 2, 2, 3, 0
-    };
-
-    auto vertexArray = std::make_shared<Ksm::VertexArray>();
-    vertexArray->Bind();
-
-    auto vertexBuffer = std::make_shared<Ksm::VertexBuffer>(reinterpret_cast<float*>(vertices), sizeof(vertices));
-    vertexBuffer->Bind();
-
-    auto indexBuffer = std::make_shared<Ksm::IndexBuffer>(indices, sizeof(indices) / sizeof(unsigned int));
-    indexBuffer->Bind();
-
-    Ksm::BufferLayout layout;
-    layout.PushAttribute<glm::vec3>();
-    layout.PushAttribute<glm::vec3>();
-
-    vertexBuffer->SetLayout(layout);
-
-    vertexArray->AddVertexBuffer(vertexBuffer);
-    vertexArray->SetIndexBuffer(indexBuffer);
+    auto quad = Ksm::Mesh::CreateCube(1.0f);
 
     const Ksm::Shader basicShader("Assets/Shaders/Basic.vert", "Assets/Shaders/Basic.frag");
     basicShader.Bind();
@@ -84,7 +56,6 @@ void Demo::Run()
     Ksm::PerspectiveCamera camera(65.0f, 800.0f / 600.0f, 0.1f, 100.0f, glm::vec3(0.0f, 0.0f, 3.0f));
 
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 
     while (!window->ShouldClose())
     {
@@ -126,12 +97,29 @@ void Demo::Run()
             camera.SetPosition(camera.GetPosition() + camera.GetRight() * 0.02f);
         }
 
+        if (Ksm::Input::IsKeyPressed(Ksm::KeyCode::Up))
+        {
+            model = glm::rotate(model, glm::radians(5.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        }
+        if (Ksm::Input::IsKeyPressed(Ksm::KeyCode::Down))
+        {
+            model = glm::rotate(model, glm::radians(5.0f), glm::vec3(-1.0f, 0.0f, 0.0f));
+        }
+        if (Ksm::Input::IsKeyPressed(Ksm::KeyCode::Left))
+        {
+            model = glm::rotate(model, glm::radians(5.0f), glm::vec3(0.0f, -1.0f, 0.0f));
+        }
+        if (Ksm::Input::IsKeyPressed(Ksm::KeyCode::Right))
+        {
+            model = glm::rotate(model, glm::radians(5.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        }
+
         basicShader.Bind();
         basicShader.SetUniform("projection", camera.GetProjectionMatrix());
         basicShader.SetUniform("view", camera.GetViewMatrix());
         basicShader.SetUniform("model", model);
 
-        Ksm::Renderer::DrawIndexed(vertexArray);
+        Ksm::Renderer::DrawIndexed(quad->GetVertexArray());
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
