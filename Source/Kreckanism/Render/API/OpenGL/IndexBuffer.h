@@ -12,6 +12,7 @@ namespace Ksm
         IndexBuffer(unsigned int* indices, size_t count);
         void Bind() const override;
         void Unbind() const override;
+        size_t GetCount() const;
     private:
         size_t count;
     };

@@ -2,12 +2,29 @@
 
 #include <glm/glm.hpp>
 #include <glm/ext/matrix_clip_space.hpp>
+#include <glm/ext/matrix_transform.hpp>
 
 namespace Ksm
 {
-    PerspectiveCamera::PerspectiveCamera() : projection(glm::mat4()), view(glm::mat4()), position(glm::vec3())
+    PerspectiveCamera::PerspectiveCamera(float fov, float aspect, float zNear, float zFar, const glm::vec3& position) : fov(fov), aspect(aspect), zNear(zNear), zFar(zFar), position(position)
     {
-        projection = glm::perspective(75.0f, 16.0f / 9.0f, 10.0f, 100.0f);
+        projection = glm::perspective(glm::radians(fov), aspect, zNear, zFar);
+
+        up = glm::vec3(0.0f, 1.0f, 0.0f);
+        right = glm::normalize(glm::cross(up, position));
+        forward = glm::vec3(0.0f, 0.0f, -1.0f);
+
+        view = glm::lookAt(position, position + forward, up);
+    }
+
+    const glm::vec3 PerspectiveCamera::GetForward() const
+    {
+        return forward;
+    }
+
+    const glm::vec3 PerspectiveCamera::GetRight() const
+    {
+        return right;
     }
 
     const glm::mat4& PerspectiveCamera::GetProjectionMatrix() const
@@ -15,8 +32,9 @@ namespace Ksm
         return projection;
     }
 
-    const glm::mat4& PerspectiveCamera::GetViewMatrix() const
+    const glm::mat4& PerspectiveCamera::GetViewMatrix()
     {
+        view = glm::lookAt(position, position + forward, up);
         return view;
     }
 

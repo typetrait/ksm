@@ -45,6 +45,11 @@ namespace Ksm
         }
     }
 
+    std::shared_ptr<IndexBuffer> VertexArray::GetIndexBuffer() const
+    {
+        return indexBuffer;
+    }
+
     void VertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer)
     {
         Bind();

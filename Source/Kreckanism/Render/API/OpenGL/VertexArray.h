@@ -15,6 +15,7 @@ namespace Ksm
         void Bind() const;
         void Unbind() const;
         void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer);
+        std::shared_ptr<IndexBuffer> GetIndexBuffer() const;
         void SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer);
     private:
         unsigned int id;
