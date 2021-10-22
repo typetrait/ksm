@@ -11,6 +11,7 @@ namespace Ksm
     {
         glEnable(GL_DEPTH_TEST);
         vertexArray->Bind();
+        vertexArray->GetIndexBuffer()->Bind();
         glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
     }
 
