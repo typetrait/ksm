@@ -48,7 +48,9 @@ void Demo::Run()
     ImGui_ImplGlfw_InitForOpenGL(window->GetWindow(), true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
-    auto quad = Ksm::Mesh::CreateCube(1.0f);
+    auto triangle = Ksm::Mesh::CreateTriangle(1.0f);
+    auto quad = Ksm::Mesh::CreateQuad(1.0f, 1.0f);
+    auto cube = Ksm::Mesh::CreateCube(1.0f);
 
     const Ksm::Shader basicShader("Assets/Shaders/Basic.vert", "Assets/Shaders/Basic.frag");
     basicShader.Bind();
@@ -56,6 +58,8 @@ void Demo::Run()
     Ksm::PerspectiveCamera camera(65.0f, 800.0f / 600.0f, 0.1f, 100.0f, glm::vec3(0.0f, 0.0f, 3.0f));
 
     glm::mat4 model = glm::mat4(1.0f);
+    glm::mat4 model2 = glm::translate(model, glm::vec3(-3.0f, 0.0f, 0.0f));
+    glm::mat4 model3 = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
 
     while (!window->ShouldClose())
     {
@@ -64,14 +68,13 @@ void Demo::Run()
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-
         {
             static float f = 0.0f;
 
             ImGui::Begin("Krecka Hax v1.0");
 
             ImGui::Text("Grakour DESTROYER");
-            ImGui::SliderFloat("Amount", &f, 0.0f, 1.0f);
+            ImGui::SliderFloat("Amount", &f, 0.0f, 360.0f);
 
             ImGui::Button("Destroy");
 
@@ -100,26 +103,42 @@ void Demo::Run()
         if (Ksm::Input::IsKeyPressed(Ksm::KeyCode::Up))
         {
             model = glm::rotate(model, glm::radians(5.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+            model2 = glm::rotate(model2, glm::radians(5.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+            model3 = glm::rotate(model3, glm::radians(5.0f), glm::vec3(1.0f, 0.0f, 0.0f));
         }
         if (Ksm::Input::IsKeyPressed(Ksm::KeyCode::Down))
         {
             model = glm::rotate(model, glm::radians(5.0f), glm::vec3(-1.0f, 0.0f, 0.0f));
+            model2 = glm::rotate(model2, glm::radians(5.0f), glm::vec3(-1.0f, 0.0f, 0.0f));
+            model3 = glm::rotate(model3, glm::radians(5.0f), glm::vec3(-1.0f, 0.0f, 0.0f));
         }
         if (Ksm::Input::IsKeyPressed(Ksm::KeyCode::Left))
         {
             model = glm::rotate(model, glm::radians(5.0f), glm::vec3(0.0f, -1.0f, 0.0f));
+            model2 = glm::rotate(model2, glm::radians(5.0f), glm::vec3(0.0f, -1.0f, 0.0f));
+            model3 = glm::rotate(model3, glm::radians(5.0f), glm::vec3(0.0f, -1.0f, 0.0f));
         }
         if (Ksm::Input::IsKeyPressed(Ksm::KeyCode::Right))
         {
             model = glm::rotate(model, glm::radians(5.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+            model2 = glm::rotate(model2, glm::radians(5.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+            model3 = glm::rotate(model3, glm::radians(5.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         }
 
         basicShader.Bind();
         basicShader.SetUniform("projection", camera.GetProjectionMatrix());
         basicShader.SetUniform("view", camera.GetViewMatrix());
+        basicShader.SetUniform("model", model2);
+
+        Ksm::Renderer::DrawIndexed(triangle->GetVertexArray());
+
         basicShader.SetUniform("model", model);
 
         Ksm::Renderer::DrawIndexed(quad->GetVertexArray());
+
+        basicShader.SetUniform("model", model3);
+
+        Ksm::Renderer::DrawIndexed(cube->GetVertexArray());
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
