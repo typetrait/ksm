@@ -16,7 +16,8 @@ namespace Ksm
         std::shared_ptr<VertexArray>& GetVertexArray();
         std::shared_ptr<VertexBuffer>& GetVertexBuffer();
         std::shared_ptr<IndexBuffer>& GetIndexBuffer();
-        static std::shared_ptr<Mesh> CreateQuad();
+        static std::shared_ptr<Mesh> CreateTriangle(float size);
+        static std::shared_ptr<Mesh> CreateQuad(float width, float height);
         static std::shared_ptr<Mesh> CreateCube(float size);
     private:
         std::vector<Vertex> vertices;

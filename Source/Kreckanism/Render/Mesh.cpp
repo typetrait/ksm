@@ -42,14 +42,31 @@ namespace Ksm
         return indexBuffer;
     }
 
-    std::shared_ptr<Mesh> Mesh::CreateQuad()
+    std::shared_ptr<Mesh> Mesh::CreateTriangle(float size)
     {
         std::vector<Vertex> vertices =
         {
-            {{ -0.5f, -0.5f, 0.0f }, {1.0f, 0.0f, 0.0f}},
-            {{ 0.5f, -0.5f, 0.0f }, {0.0f, 1.0f, 0.0f}},
-            {{ 0.5f,  0.5f, 0.0f }, {0.0f, 0.0f, 1.0f}},
-            {{ -0.5f, 0.5f, 0.0f }, {1.0f, 1.0f, 1.0f}}
+            {{ -size / 2.0f, -size / 2.0f, 0.0f }, { 1.0f, 0.0f, 0.0f }},
+            {{ 0.0f, size / 2.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }},
+            {{ size / 2.0f,  -size / 2.0f, 0.0f }, { 0.0f, 0.0f, 1.0f }}
+        };
+
+        std::vector<unsigned int> indices =
+        {
+            0, 1, 2
+        };
+
+        return std::make_shared<Mesh>(vertices, indices);
+    }
+
+    std::shared_ptr<Mesh> Mesh::CreateQuad(float width, float height)
+    {
+        std::vector<Vertex> vertices =
+        {
+            {{ -width / 2.0f, -height / 2.0f, 0.0f }, { 1.0f, 0.0f, 0.0f }},
+            {{ width / 2.0f, -height / 2.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }},
+            {{ width / 2.0f,  height / 2.0f, 0.0f }, { 0.0f, 0.0f, 1.0f }},
+            {{ -width /2.0f, height / 2.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }}
         };
 
         std::vector<unsigned int> indices =
@@ -64,14 +81,14 @@ namespace Ksm
     {
         std::vector<Vertex> vertices =
         {
-            {{ -size / 2.0f, -size / 2.0f, size / 2.0f }, {1.0f, 0.0f, 0.0f}},
-            {{ size / 2.0f, -size / 2.0f, size / 2.0f }, {0.0f, 1.0f, 0.0f}},
-            {{ size / 2.0f, size / 2.0f, size / 2.0f }, {0.0f, 0.0f, 1.0f}},
-            {{ -size / 2.0f, size / 2.0f, size / 2.0f }, {0.0f, 0.0f, 1.0f}},
-            {{ -size / 2.0f, -size / 2.0f, -size / 2.0f }, {0.0f, 0.0f, 1.0f}},
-            {{ size / 2.0f, -size / 2.0f, -size / 2.0f }, {0.0f, 0.0f, 1.0f}},
-            {{ size / 2.0f, size / 2.0f, -size / 2.0f }, {1.0f, 1.0f, 1.0f}},
-            {{ -size / 2.0f, size / 2.0f, -size / 2.0f }, {0.0f, 0.0f, 1.0f}}
+            {{ -size / 2.0f, -size / 2.0f, size / 2.0f }, { 1.0f, 0.0f, 0.0f }},
+            {{ size / 2.0f, -size / 2.0f, size / 2.0f }, { 0.0f, 1.0f, 0.0f }},
+            {{ size / 2.0f, size / 2.0f, size / 2.0f }, { 0.0f, 0.0f, 1.0f }},
+            {{ -size / 2.0f, size / 2.0f, size / 2.0f }, { 0.0f, 0.0f, 1.0f }},
+            {{ -size / 2.0f, -size / 2.0f, -size / 2.0f }, { 0.0f, 0.0f, 1.0f }},
+            {{ size / 2.0f, -size / 2.0f, -size / 2.0f }, { 0.0f, 0.0f, 1.0f }},
+            {{ size / 2.0f, size / 2.0f, -size / 2.0f }, { 1.0f, 1.0f, 1.0f }},
+            {{ -size / 2.0f, size / 2.0f, -size / 2.0f }, { 0.0f, 0.0f, 1.0f }}
         };
 
         std::vector<unsigned int> indices =
