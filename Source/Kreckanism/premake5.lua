@@ -16,7 +16,8 @@ project "Kreckanism"
         "%{wks.location}/ThirdParty/glad/include",
         "%{wks.location}/ThirdParty/glfw/include",
         "%{wks.location}/ThirdParty/glm",
-        "%{wks.location}/ThirdParty/imgui"
+        "%{wks.location}/ThirdParty/imgui",
+        "%{wks.location}/ThirdParty/stb"
     }
 
     filter "system:linux"

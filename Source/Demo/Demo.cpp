@@ -14,9 +14,10 @@
 #include <Kreckanism/Event/EventDispatcher.h>
 #include <Kreckanism/Render/API/OpenGL/BufferLayout.h>
 #include <Kreckanism/Render/API/OpenGL/IndexBuffer.h>
-#include <Kreckanism/Render/API/OpenGL/Shader.h>
 #include <Kreckanism/Render/API/OpenGL/VertexArray.h>
 #include <Kreckanism/Render/API/OpenGL/VertexBuffer.h>
+#include <Kreckanism/Render/API/OpenGL/Shader.h>
+#include <Kreckanism/Render/API/OpenGL/Texture.h>
 #include <Kreckanism/Render/Vertex.h>
 #include <Kreckanism/Render/PerspectiveCamera.h>
 #include <Kreckanism/Render/Renderer.h>
@@ -52,6 +53,8 @@ void Demo::Run()
     auto quad = Ksm::Mesh::CreateQuad(1.0f, 1.0f);
     auto cube = Ksm::Mesh::CreateCube(1.0f);
 
+    Ksm::Texture forbidden("Assets/Textures/forbidden.png");
+
     const Ksm::Shader basicShader("Assets/Shaders/Basic.vert", "Assets/Shaders/Basic.frag");
     basicShader.Bind();
 
@@ -60,6 +63,8 @@ void Demo::Run()
     glm::mat4 model = glm::mat4(1.0f);
     glm::mat4 model2 = glm::translate(model, glm::vec3(-3.0f, 0.0f, 0.0f));
     glm::mat4 model3 = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
+
+    float rotation = 0.0f;
 
     while (!window->ShouldClose())
     {
@@ -79,9 +84,9 @@ void Demo::Run()
             ImGui::Button("Destroy");
 
             ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-
-            ImGui::End();
+            ImGui::Text("Rotation: %.3f", rotation);
         }
+        ImGui::End();
 
         if (Ksm::Input::IsKeyPressed(Ksm::KeyCode::W))
         {
@@ -125,6 +130,16 @@ void Demo::Run()
             model3 = glm::rotate(model3, glm::radians(5.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         }
 
+        model = glm::rotate(model, glm::radians(glm::cos(rotation)), glm::vec3(0.0f, 1.0f, 0.0f));
+        model2 = glm::rotate(model2, glm::radians(glm::cos(rotation)), glm::vec3(0.0f, 1.0f, 0.0f));
+        model3 = glm::rotate(model3, glm::radians(glm::cos(rotation)), glm::vec3(0.0f, 1.0f, 0.0f));
+
+        rotation += 0.0055f;
+        if (rotation >= 360.0f)
+        {
+            rotation = 0.0f;
+        }
+
         basicShader.Bind();
         basicShader.SetUniform("projection", camera.GetProjectionMatrix());
         basicShader.SetUniform("view", camera.GetViewMatrix());
@@ -134,6 +149,7 @@ void Demo::Run()
 
         basicShader.SetUniform("model", model);
 
+        forbidden.Bind();
         Ksm::Renderer::DrawIndexed(quad->GetVertexArray());
 
         basicShader.SetUniform("model", model3);
