@@ -7,9 +7,17 @@
 
 namespace Ksm
 {
+    void Renderer::Draw(std::shared_ptr<VertexArray>& vertexArray, int count)
+    {
+        glEnable(GL_DEPTH_TEST);
+        vertexArray->Bind();
+        glDrawArrays(GL_TRIANGLES, 0, count);
+    }
+
     void Renderer::DrawIndexed(std::shared_ptr<VertexArray>& vertexArray)
     {
         glEnable(GL_DEPTH_TEST);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         vertexArray->Bind();
         vertexArray->GetIndexBuffer()->Bind();
         glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);

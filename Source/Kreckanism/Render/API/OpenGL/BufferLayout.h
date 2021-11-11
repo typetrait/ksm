@@ -20,28 +20,29 @@ namespace Ksm
         {
         }
 
-        template<>
-        void PushAttribute<glm::vec2>()
-        {
-            attributes.push_back(
-            {
-                .type = GL_FLOAT,
-                .count = 2,
-                .size = sizeof(glm::vec2)
-            });
-        }
-
-        template<>
-        void PushAttribute<glm::vec3>()
-        {
-            attributes.push_back(
-            {
-                .type = GL_FLOAT,
-                .count = 3,
-                .size = sizeof(glm::vec3)
-            });
-        }
     private:
         std::vector<VertexAttribute> attributes;
     };
+
+    template<> inline
+    void BufferLayout::PushAttribute<glm::vec2>()
+    {
+        attributes.push_back(
+        {
+            .type = GL_FLOAT,
+            .count = 2,
+            .size = sizeof(glm::vec2)
+        });
+    }
+
+    template<> inline
+    void BufferLayout::PushAttribute<glm::vec3>()
+    {
+        attributes.push_back(
+        {
+            .type = GL_FLOAT,
+            .count = 3,
+            .size = sizeof(glm::vec3)
+        });
+    }
 }

@@ -12,10 +12,12 @@ namespace Ksm
     class Mesh
     {
     public:
+        Mesh(std::vector<Vertex> vertices);
         Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
         std::shared_ptr<VertexArray>& GetVertexArray();
         std::shared_ptr<VertexBuffer>& GetVertexBuffer();
         std::shared_ptr<IndexBuffer>& GetIndexBuffer();
+        std::vector<Vertex> GetVertices();
         static std::shared_ptr<Mesh> CreateTriangle(float size);
         static std::shared_ptr<Mesh> CreateQuad(float width, float height);
         static std::shared_ptr<Mesh> CreateCube(float size);
