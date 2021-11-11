@@ -21,10 +21,14 @@ project "Kreckanism"
     }
 
     filter "system:linux"
-        links { "glfw", "glad", "imgui", "GL", "rt", "m", "dl", "X11", "pthread" }
+        includedirs { "/opt/fbx/include" }
+        linkoptions { "/opt/fbx/lib/gcc/x64/release/libfbxsdk.a" }
+        links { "glfw", "glad", "imgui", "GL", "rt", "m", "dl", "X11", "pthread", "xml2" }
 
     filter "system:windows"
-        links { "glfw", "glad", "imgui", "opengl32" }
+        includedirs { "D:/Program Files/Autodesk/FBX/FBX SDK/2020.2.1/include" }
+        libdirs { "D:/Program Files/Autodesk/FBX/FBX SDK/2020.2.1/lib/vs2019/x64/debug" }
+        links { "glfw", "glad", "imgui", "opengl32", "libfbxsdk-md", "libxml2-md", "zlib-md" }
 
     filter "configurations:Debug"
         defines { "DEBUG" }
