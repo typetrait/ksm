@@ -13,7 +13,7 @@ namespace Ksm
         unsigned int GetKeyCode() const { return keyCode; }
         static EventType GetStaticType() { return EventType::KeyPressed; }
         EventType GetType() const override { return EventType::KeyPressed; }
-        std::string GetName() const override { return "Key Pressed Event!"; }
+        std::string GetName() const override { return "KeyPressedEvent"; }
     private:
         unsigned int keyCode;
     };

@@ -12,6 +12,9 @@
 #include <Kreckanism/Input/Input.h>
 #include <Kreckanism/Event/WindowResizeEvent.h>
 #include <Kreckanism/Event/KeyPressedEvent.h>
+#include <Kreckanism/Event/MouseMoveEvent.h>
+#include <Kreckanism/Event/MousePressedEvent.h>
+#include <Kreckanism/Event/MouseReleasedEvent.h>
 #include <Kreckanism/Event/EventDispatcher.h>
 #include <Kreckanism/Render/API/OpenGL/BufferLayout.h>
 #include <Kreckanism/Render/API/OpenGL/IndexBuffer.h>
@@ -76,6 +79,8 @@ void Demo::Run()
         ImGui::Text("Runtime Statistics:");
         ImGui::Text("%.1f FPS (%.3f ms/frame)", ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
 
+        ImGui::Text("Cursor Pos: x=%.1f y=%.1f", Ksm::Input::GetMousePosition().x, Ksm::Input::GetMousePosition().y);
+
         ImGui::End();
 
         if (Ksm::Input::IsKeyPressed(Ksm::KeyCode::W))
@@ -136,12 +141,27 @@ void Demo::OnEvent(Ksm::Event& e)
     Ksm::EventDispatcher dispatcher(e);
     dispatcher.Dispatch<Ksm::WindowResizeEvent>([](const Ksm::WindowResizeEvent& ev)
     {
-        KLOG_INFO(std::format("Window resized: Width={}, Height = {}.", ev.GetWidth(), ev.GetHeight()));
+        KLOG_INFO(std::format("Window resized: Width={}, Height={}.", ev.GetWidth(), ev.GetHeight()));
     });
 
     dispatcher.Dispatch<Ksm::KeyPressedEvent>([](const Ksm::KeyPressedEvent& ev)
     {
         KLOG_INFO(std::format("Key pressed: KeyCode={}.", ev.GetKeyCode()));
+    });
+
+    dispatcher.Dispatch<Ksm::MouseMoveEvent>([](const Ksm::MouseMoveEvent& ev)
+    {
+        KLOG_INFO(std::format("Mouse moved: X={}, Y={}.", ev.GetX(), ev.GetY()));
+    });
+
+    dispatcher.Dispatch<Ksm::MousePressedEvent>([](const Ksm::MousePressedEvent& ev)
+    {
+        KLOG_INFO(std::format("Mouse pressed: Button={}.", ev.GetButton()));
+    });
+
+    dispatcher.Dispatch<Ksm::MouseReleasedEvent>([](const Ksm::MouseReleasedEvent& ev)
+    {
+        KLOG_INFO(std::format("Mouse released: Button={}.", ev.GetButton()));
     });
 }
 

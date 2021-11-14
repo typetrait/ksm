@@ -10,6 +10,11 @@ namespace Ksm
         // Keyboard events
         KeyPressed,
         KeyReleased,
-        KeyTyped
+        KeyTyped,
+
+        // Mouse events
+        MouseMove,
+        MousePressed,
+        MouseReleased
     };
 }

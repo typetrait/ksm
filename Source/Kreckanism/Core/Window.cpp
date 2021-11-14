@@ -7,6 +7,10 @@
 
 #include <Kreckanism/Core/Logger.h>
 #include <Kreckanism/Event/KeyPressedEvent.h>
+#include <Kreckanism/Event/MouseMoveEvent.h>
+#include <Kreckanism/Event/MousePressedEvent.h>
+#include <Kreckanism/Event/MouseReleasedEvent.h>
+#include <Kreckanism/Event/KeyPressedEvent.h>
 #include <Kreckanism/Event/WindowResizeEvent.h>
 
 namespace Ksm
@@ -55,6 +59,35 @@ namespace Ksm
                 case GLFW_REPEAT:
                 {
                     KeyPressedEvent e(key);
+                    self.eventCallback(e);
+                    return;
+                }
+            }
+        });
+
+        glfwSetCursorPosCallback(window, [](GLFWwindow* window, double x, double y)
+        {
+            const auto& self = *static_cast<Window*>(glfwGetWindowUserPointer(window));
+
+            MouseMoveEvent e(x, y);
+            self.eventCallback(e);
+        });
+
+        glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int button, int action, int mods)
+        {
+            const auto& self = *static_cast<Window*>(glfwGetWindowUserPointer(window));
+
+            switch (action)
+            {
+                case GLFW_PRESS:
+                {
+                    MousePressedEvent e(button);
+                    self.eventCallback(e);
+                    return;
+                }
+                case GLFW_RELEASE:
+                {
+                    MouseReleasedEvent e(button);
                     self.eventCallback(e);
                     return;
                 }
