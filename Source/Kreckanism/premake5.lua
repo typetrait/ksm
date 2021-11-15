@@ -17,13 +17,14 @@ project "Kreckanism"
         "%{wks.location}/ThirdParty/glfw/include",
         "%{wks.location}/ThirdParty/glm",
         "%{wks.location}/ThirdParty/imgui",
+        "%{wks.location}/ThirdParty/fmt/include",
         "%{wks.location}/ThirdParty/stb"
     }
 
     filter "system:linux"
         includedirs { "/opt/fbx/include" }
         libdirs { "/opt/fbx/lib/gcc/x64/debug" }
-        links { "glfw", "glad", "imgui", "GL", "rt", "m", "dl", "X11", "pthread", "fbxsdk", "xml2" }
+        links { "glfw", "glad", "imgui", "fmt", "GL", "rt", "m", "dl", "X11", "pthread", "fbxsdk", "xml2" }
 
     filter "system:windows"
         includedirs { "D:/Program Files/Autodesk/FBX/FBX SDK/2020.2.1/include" }
