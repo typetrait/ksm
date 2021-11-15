@@ -20,7 +20,9 @@ project "Demo"
     }
 
     filter "system:linux"
-        links { "Kreckanism", "glfw", "glad", "imgui", "GL", "rt", "m", "dl", "X11", "pthread" }
+        includedirs { "/opt/fbx/include" }
+        libdirs { "/opt/fbx/lib/gcc/x64/debug" }
+        links { "Kreckanism", "glfw", "glad", "imgui", "GL", "rt", "m", "dl", "X11", "pthread", "fbxsdk", "xml2" }
 
     filter "system:windows"
         includedirs { "D:/Program Files/Autodesk/FBX/FBX SDK/2020.2.1/include" }
