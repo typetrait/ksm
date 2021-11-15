@@ -1,6 +1,5 @@
 #include "Demo/Demo.h"
 
-#include <format>
 #include <chrono>
 
 #include <imgui.h>
@@ -8,6 +7,7 @@
 #include <backends/imgui_impl_opengl3.h>
 #include <glm/glm.hpp>
 #include <glm/ext/matrix_transform.hpp>
+#include <fmt/format.h>
 
 #include <Kreckanism/Input/Input.h>
 #include <Kreckanism/Event/WindowResizeEvent.h>
@@ -38,7 +38,7 @@ void Demo::Startup()
 
     Ksm::Input::Initialize(window->GetWindow());
 
-    KLOG_INFO(std::format("Renderer Info: {} | {} | {}.", (const char*)glGetString(GL_VENDOR),
+    KLOG_INFO(fmt::format("Renderer Info: {} | {} | {}.", (const char*)glGetString(GL_VENDOR),
                                                           (const char*)glGetString(GL_RENDERER),
                                                           (const char*)glGetString(GL_VERSION)));
 }
@@ -141,27 +141,27 @@ void Demo::OnEvent(Ksm::Event& e)
     Ksm::EventDispatcher dispatcher(e);
     dispatcher.Dispatch<Ksm::WindowResizeEvent>([](const Ksm::WindowResizeEvent& ev)
     {
-        KLOG_INFO(std::format("Window resized: Width={}, Height={}.", ev.GetWidth(), ev.GetHeight()));
+        KLOG_INFO(fmt::format("Window resized: Width={}, Height={}.", ev.GetWidth(), ev.GetHeight()));
     });
 
     dispatcher.Dispatch<Ksm::KeyPressedEvent>([](const Ksm::KeyPressedEvent& ev)
     {
-        KLOG_INFO(std::format("Key pressed: KeyCode={}.", ev.GetKeyCode()));
+        KLOG_INFO(fmt::format("Key pressed: KeyCode={}.", ev.GetKeyCode()));
     });
 
     dispatcher.Dispatch<Ksm::MouseMoveEvent>([](const Ksm::MouseMoveEvent& ev)
     {
-        KLOG_INFO(std::format("Mouse moved: X={}, Y={}.", ev.GetX(), ev.GetY()));
+        KLOG_INFO(fmt::format("Mouse moved: X={}, Y={}.", ev.GetX(), ev.GetY()));
     });
 
     dispatcher.Dispatch<Ksm::MousePressedEvent>([](const Ksm::MousePressedEvent& ev)
     {
-        KLOG_INFO(std::format("Mouse pressed: Button={}.", ev.GetButton()));
+        KLOG_INFO(fmt::format("Mouse pressed: Button={}.", ev.GetButton()));
     });
 
     dispatcher.Dispatch<Ksm::MouseReleasedEvent>([](const Ksm::MouseReleasedEvent& ev)
     {
-        KLOG_INFO(std::format("Mouse released: Button={}.", ev.GetButton()));
+        KLOG_INFO(fmt::format("Mouse released: Button={}.", ev.GetButton()));
     });
 }
 

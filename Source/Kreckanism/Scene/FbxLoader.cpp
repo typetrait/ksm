@@ -1,9 +1,9 @@
 #include <Kreckanism/Scene/FbxLoader.h>
 
 #include <vector>
-#include <format>
 
 #include <fbxsdk.h>
+#include <fmt/format.h>
 
 #include <Kreckanism/Core/Logger.h>
 #include <Kreckanism/Render/Vertex.h>
@@ -23,7 +23,7 @@ namespace Ksm
         if (!fbxImporter->Initialize(path.c_str(), -1, fbxManager->GetIOSettings()))
         {
             auto reason = fbxImporter->GetStatus().GetErrorString();
-            KLOG_FAIL(std::format("FbxImporter::Initialize() failed. Reason: {}.", reason));
+            KLOG_FAIL(fmt::format("FbxImporter::Initialize() failed. Reason: {}.", reason));
             return meshBuffer;
         }
 
@@ -56,11 +56,11 @@ namespace Ksm
         auto nodeName = node->GetName();
         auto nodeAttribute = node->GetNodeAttribute();
 
-        KLOG_INFO(std::format("Found node with name \"{}\".", nodeName));
+        KLOG_INFO(fmt::format("Found node with name \"{}\".", nodeName));
 
         if (nodeAttribute->GetAttributeType() == FbxNodeAttribute::eMesh)
         {
-            KLOG_INFO(std::format("\"{}\" is a mesh node.", nodeName));
+            KLOG_INFO(fmt::format("\"{}\" is a mesh node.", nodeName));
 
             auto mesh = node->GetMesh();
             ProcessMesh(mesh);
