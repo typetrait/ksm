@@ -21,8 +21,8 @@ project "Demo"
     }
 
     filter "system:linux"
-        includedirs { "/opt/fbx/include" }
-        libdirs { "/opt/fbx/lib/gcc/x64/debug" }
+        includedirs { "/opt/fbxsdk/include" }
+        libdirs { "/opt/fbxsdk/lib/gcc/x64/debug" }
         links { "Kreckanism", "glfw", "glad", "imgui", "fmt", "GL", "rt", "m", "dl", "X11", "pthread", "fbxsdk", "xml2" }
 
     filter "system:windows"
