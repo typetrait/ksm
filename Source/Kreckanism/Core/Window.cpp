@@ -6,11 +6,10 @@
 #include <GLFW/glfw3.h>
 
 #include <Kreckanism/Core/Logger.h>
-#include <Kreckanism/Event/KeyPressedEvent.h>
+#include <Kreckanism/Event/KeyPressEvent.h>
 #include <Kreckanism/Event/MouseMoveEvent.h>
-#include <Kreckanism/Event/MousePressedEvent.h>
-#include <Kreckanism/Event/MouseReleasedEvent.h>
-#include <Kreckanism/Event/KeyPressedEvent.h>
+#include <Kreckanism/Event/MousePressEvent.h>
+#include <Kreckanism/Event/MouseReleaseEvent.h>
 #include <Kreckanism/Event/WindowResizeEvent.h>
 
 namespace Ksm
@@ -32,6 +31,7 @@ namespace Ksm
         }
 
         glfwMakeContextCurrent(window);
+        glfwSwapInterval(0);
 
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
         {
@@ -52,13 +52,13 @@ namespace Ksm
             {
                 case GLFW_PRESS:
                 {
-                    KeyPressedEvent e(key);
+                    KeyPressEvent e(key);
                     self.eventCallback(e);
                     return;
                 }
                 case GLFW_REPEAT:
                 {
-                    KeyPressedEvent e(key);
+                    KeyPressEvent e(key);
                     self.eventCallback(e);
                     return;
                 }
@@ -81,13 +81,13 @@ namespace Ksm
             {
                 case GLFW_PRESS:
                 {
-                    MousePressedEvent e(button);
+                    MousePressEvent e(button);
                     self.eventCallback(e);
                     return;
                 }
                 case GLFW_RELEASE:
                 {
-                    MouseReleasedEvent e(button);
+                    MouseReleaseEvent e(button);
                     self.eventCallback(e);
                     return;
                 }

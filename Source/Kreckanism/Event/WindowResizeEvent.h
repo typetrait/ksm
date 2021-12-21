@@ -14,7 +14,7 @@ namespace Ksm
         unsigned int GetHeight() const { return height; }
         static EventType GetStaticType() { return EventType::WindowResize; }
         EventType GetType() const override { return EventType::WindowResize; }
-        virtual std::string GetName() const { return "Window Resize Event!"; }
+        std::string GetName() const override { return "WindowResizeEvent"; }
     private:
         unsigned int width, height;
     };

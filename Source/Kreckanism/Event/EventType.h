@@ -8,13 +8,13 @@ namespace Ksm
         WindowResize,
 
         // Keyboard events
-        KeyPressed,
-        KeyReleased,
-        KeyTyped,
+        KeyPress,
+        KeyRelease,
+        KeyType,
 
         // Mouse events
         MouseMove,
-        MousePressed,
-        MouseReleased
+        MousePress,
+        MouseRelease
     };
 }
