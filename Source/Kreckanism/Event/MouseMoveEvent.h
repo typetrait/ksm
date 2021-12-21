@@ -15,6 +15,7 @@ namespace Ksm
         static EventType GetStaticType() { return EventType::MouseMove; }
         EventType GetType() const override { return EventType::MouseMove; }
         std::string GetName() const override { return "MouseMoveEvent"; }
+
     private:
         double x, y;
     };

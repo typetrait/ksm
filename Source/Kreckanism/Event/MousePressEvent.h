@@ -14,6 +14,7 @@ namespace Ksm
         static EventType GetStaticType() { return EventType::MousePress; }
         EventType GetType() const override { return EventType::MousePress; }
         std::string GetName() const override { return "MousePressEvent"; }
+
     private:
         int button;
     };

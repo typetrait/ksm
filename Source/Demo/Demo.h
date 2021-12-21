@@ -4,8 +4,7 @@
 
 #include <glm/glm.hpp>
 
-#include <Kreckanism/Core/Kreckanism.h>
-#include <Kreckanism/Render/PerspectiveCamera.h>
+#include <Kreckanism/Kreckanism.h>
 
 class Demo : public Ksm::Application
 {

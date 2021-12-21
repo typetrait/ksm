@@ -2,9 +2,9 @@
 
 #include <vector>
 
+#include <Kreckanism/Render/API/OpenGL/IndexBuffer.h>
 #include <Kreckanism/Render/API/OpenGL/VertexArray.h>
 #include <Kreckanism/Render/API/OpenGL/VertexBuffer.h>
-#include <Kreckanism/Render/API/OpenGL/IndexBuffer.h>
 #include <Kreckanism/Render/Vertex.h>
 
 namespace Ksm
@@ -21,6 +21,7 @@ namespace Ksm
         static std::shared_ptr<Mesh> CreateTriangle(float size);
         static std::shared_ptr<Mesh> CreateQuad(float width, float height);
         static std::shared_ptr<Mesh> CreateCube(float size);
+
     private:
         std::vector<Vertex> vertices;
         std::vector<unsigned int> indices;

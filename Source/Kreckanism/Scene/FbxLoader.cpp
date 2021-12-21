@@ -6,8 +6,8 @@
 #include <fmt/format.h>
 
 #include <Kreckanism/Core/Logger.h>
-#include <Kreckanism/Render/Vertex.h>
 #include <Kreckanism/Render/Mesh.h>
+#include <Kreckanism/Render/Vertex.h>
 
 namespace Ksm
 {

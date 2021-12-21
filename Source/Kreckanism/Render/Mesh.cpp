@@ -4,9 +4,9 @@
 
 #include <glm/glm.hpp>
 
+#include <Kreckanism/Render/API/OpenGL/IndexBuffer.h>
 #include <Kreckanism/Render/API/OpenGL/VertexArray.h>
 #include <Kreckanism/Render/API/OpenGL/VertexBuffer.h>
-#include <Kreckanism/Render/API/OpenGL/IndexBuffer.h>
 #include <Kreckanism/Render/Vertex.h>
 
 namespace Ksm

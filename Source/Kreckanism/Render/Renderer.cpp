@@ -1,7 +1,7 @@
 #include <Kreckanism/Render/Renderer.h>
 
-#include <glm/glm.hpp>
 #include <glad/glad.h>
+#include <glm/glm.hpp>
 
 #include <Kreckanism/Render/API/OpenGL/VertexArray.h>
 

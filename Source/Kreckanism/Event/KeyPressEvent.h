@@ -14,6 +14,7 @@ namespace Ksm
         static EventType GetStaticType() { return EventType::KeyPress; }
         EventType GetType() const override { return EventType::KeyPress; }
         std::string GetName() const override { return "KeyPressEvent"; }
+
     private:
         unsigned int keyCode;
     };

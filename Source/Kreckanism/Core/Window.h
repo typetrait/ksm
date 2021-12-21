@@ -5,6 +5,7 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
 #include <Kreckanism/Event/Event.h>
 
 namespace Ksm

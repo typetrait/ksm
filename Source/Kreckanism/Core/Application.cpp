@@ -2,7 +2,7 @@
 
 #include <fmt/format.h>
 
-#include <Kreckanism/Core/Kreckanism.h>
+#include <Kreckanism/Core/Logger.h>
 #include <Kreckanism/Event/Event.h>
 #include <Kreckanism/Event/EventDispatcher.h>
 #include <Kreckanism/Event/KeyPressEvent.h>

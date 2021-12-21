@@ -1,8 +1,6 @@
 #include "Kreckanism/Core/DeltaTime.h"
 
-#include <algorithm>
 #include <chrono>
-#include <thread>
 
 #define BILLION 1000000000.0
 

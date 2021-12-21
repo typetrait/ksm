@@ -1,36 +1,15 @@
 #include "Demo/Demo.h"
 
-#include <algorithm>
 #include <chrono>
-#include <thread>
 
-#include <imgui.h>
 #include <backends/imgui_impl_glfw.h>
 #include <backends/imgui_impl_opengl3.h>
+#include <fmt/format.h>
 #include <glm/glm.hpp>
 #include <glm/ext/matrix_transform.hpp>
-#include <fmt/format.h>
+#include <imgui.h>
 
-#include "Kreckanism/Core/DeltaTime.h"
-#include <Kreckanism/Event/Event.h>
-#include <Kreckanism/Event/EventDispatcher.h>
-#include <Kreckanism/Event/KeyPressEvent.h>
-#include <Kreckanism/Event/MouseMoveEvent.h>
-#include <Kreckanism/Event/MousePressEvent.h>
-#include <Kreckanism/Event/MouseReleaseEvent.h>
-#include <Kreckanism/Event/WindowResizeEvent.h>
-#include <Kreckanism/Input/Input.h>
-#include <Kreckanism/Render/API/OpenGL/BufferLayout.h>
-#include <Kreckanism/Render/API/OpenGL/IndexBuffer.h>
-#include <Kreckanism/Render/API/OpenGL/VertexArray.h>
-#include <Kreckanism/Render/API/OpenGL/VertexBuffer.h>
-#include <Kreckanism/Render/API/OpenGL/Shader.h>
-#include <Kreckanism/Render/API/OpenGL/Texture.h>
-#include <Kreckanism/Render/Vertex.h>
-#include <Kreckanism/Render/PerspectiveCamera.h>
-#include <Kreckanism/Render/Renderer.h>
-#include <Kreckanism/Render/Mesh.h>
-#include <Kreckanism/Scene/FbxLoader.h>
+#include <Kreckanism/Kreckanism.h>
 
 void Demo::Startup()
 {

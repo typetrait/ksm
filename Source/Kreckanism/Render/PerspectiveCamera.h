@@ -14,6 +14,7 @@ namespace Ksm
         const glm::mat4& GetViewMatrix();
         const glm::vec3& GetPosition() const;
         void SetPosition(const glm::vec3& position);
+
     private:
         float fov;
         float aspect;
