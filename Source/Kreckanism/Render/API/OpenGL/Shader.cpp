@@ -64,6 +64,18 @@ namespace Ksm
         glUseProgram(0);
     }
 
+    void Shader::SetUniform(const std::string& name, const int& value) const
+    {
+        auto location = glGetUniformLocation(id, name.c_str());
+        glUniform1i(location, value);
+    }
+
+    void Shader::SetUniform(const std::string& name, const float& value) const
+    {
+        auto location = glGetUniformLocation(id, name.c_str());
+        glUniform1f(location, value);
+    }
+
     void Shader::SetUniform(const std::string& name, const glm::vec2& vector) const
     {
         auto location = glGetUniformLocation(id, name.c_str());

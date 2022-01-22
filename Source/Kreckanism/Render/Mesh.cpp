@@ -19,6 +19,7 @@ namespace Ksm
         BufferLayout layout;
         layout.PushAttribute<glm::vec3>();
         layout.PushAttribute<glm::vec3>();
+        layout.PushAttribute<glm::vec3>();
         layout.PushAttribute<glm::vec2>();
 
         vertexBuffer->SetLayout(layout);
@@ -33,6 +34,7 @@ namespace Ksm
         indexBuffer = std::make_shared<IndexBuffer>(reinterpret_cast<unsigned int*>(&indices[0]), indices.size());
 
         BufferLayout layout;
+        layout.PushAttribute<glm::vec3>();
         layout.PushAttribute<glm::vec3>();
         layout.PushAttribute<glm::vec3>();
         layout.PushAttribute<glm::vec2>();
@@ -61,67 +63,5 @@ namespace Ksm
     std::vector<Vertex> Mesh::GetVertices()
     {
         return vertices;
-    }
-
-    std::shared_ptr<Mesh> Mesh::CreateTriangle(float size)
-    {
-        std::vector<Vertex> vertices =
-        {
-            {{ -size / 2.0f, -size / 2.0f, 0.0f }, { 1.0f, 0.0f, 0.0f }, { 0.0f, 0.0f }},
-            {{ 0.0f, size / 2.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, { 0.0f, 0.0f }},
-            {{ size / 2.0f,  -size / 2.0f, 0.0f }, { 0.0f, 0.0f, 1.0f }, { 0.0f, 0.0f }}
-        };
-
-        std::vector<unsigned int> indices =
-        {
-            0, 1, 2
-        };
-
-        return std::make_shared<Mesh>(vertices, indices);
-    }
-
-    std::shared_ptr<Mesh> Mesh::CreateQuad(float width, float height)
-    {
-        std::vector<Vertex> vertices =
-        {
-            {{ -width / 2.0f, -height / 2.0f, 0.0f }, { 1.0f, 0.0f, 0.0f }, { 0.0f, 0.0f }},
-            {{ width / 2.0f, -height / 2.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, { 1.0f, 0.0f }},
-            {{ width / 2.0f,  height / 2.0f, 0.0f }, { 0.0f, 0.0f, 1.0f }, { 1.0f, 1.0f }},
-            {{ -width /2.0f, height / 2.0f, 0.0f }, { 1.0f, 1.0f, 1.0f }, { 0.0f, 1.0f }}
-        };
-
-        std::vector<unsigned int> indices =
-        {
-            0, 1, 2, 2, 3, 0
-        };
-
-        return std::make_shared<Mesh>(vertices, indices);
-    }
-
-    std::shared_ptr<Mesh> Mesh::CreateCube(float size)
-    {
-        std::vector<Vertex> vertices =
-        {
-            {{ -size / 2.0f, -size / 2.0f, size / 2.0f }, { 1.0f, 0.0f, 0.0f }, { 0.0f, 0.0f }},
-            {{ size / 2.0f, -size / 2.0f, size / 2.0f }, { 0.0f, 1.0f, 0.0f }, { 0.0f, 0.0f }},
-            {{ size / 2.0f, size / 2.0f, size / 2.0f }, { 0.0f, 0.0f, 1.0f }, { 0.0f, 0.0f }},
-            {{ -size / 2.0f, size / 2.0f, size / 2.0f }, { 0.0f, 0.0f, 1.0f }, { 0.0f, 0.0f }},
-            {{ -size / 2.0f, -size / 2.0f, -size / 2.0f }, { 0.0f, 0.0f, 1.0f }, { 0.0f, 0.0f }},
-            {{ size / 2.0f, -size / 2.0f, -size / 2.0f }, { 0.0f, 0.0f, 1.0f }, { 0.0f, 0.0f }},
-            {{ size / 2.0f, size / 2.0f, -size / 2.0f }, { 1.0f, 1.0f, 1.0f }, { 0.0f, 0.0f }},
-            {{ -size / 2.0f, size / 2.0f, -size / 2.0f }, { 0.0f, 0.0f, 1.0f }, { 0.0f, 0.0f }}
-        };
-
-        std::vector<unsigned int> indices =
-        {
-            0, 1, 2, 2, 3, 0,
-            3, 2, 6, 6, 7, 3,
-            7, 6, 5, 5, 4, 7,
-            4, 0, 3, 3, 7, 4,
-            0, 1, 5, 5, 4, 0,
-            1, 5, 6, 6, 2, 1
-        };
-
-        return std::make_shared<Mesh>(vertices, indices);
     }
 }

@@ -20,6 +20,10 @@ namespace Ksm
         void SetTitle(std::string title) const;
         bool ShouldClose() const;
         void Update() const;
+        int GetWidth() const;
+        int GetHeight() const;
+        void SetWidth(int width) { this->width = width; };
+        void SetHeight(int height) { this->height = height; };
     private:
         int width;
         int height;

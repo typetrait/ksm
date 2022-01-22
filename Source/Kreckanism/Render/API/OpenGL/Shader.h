@@ -13,6 +13,8 @@ namespace Ksm
         ~Shader();
         void Bind() const;
         void Unbind() const;
+        void SetUniform(const std::string& name, const int& value) const;
+        void SetUniform(const std::string& name, const float& value) const;
         void SetUniform(const std::string& name, const glm::vec2& vector) const;
         void SetUniform(const std::string& name, const glm::vec3& vector) const;
         void SetUniform(const std::string& name, const glm::vec4& vector) const;

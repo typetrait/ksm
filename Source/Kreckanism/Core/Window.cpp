@@ -134,4 +134,14 @@ namespace Ksm
         glfwPollEvents();
         glfwSwapBuffers(window);
     }
+
+    int Window::GetWidth() const
+    {
+        return width;
+    }
+
+    int Window::GetHeight() const
+    {
+        return height;
+    }
 }

@@ -18,11 +18,11 @@ namespace Ksm
         virtual void OnUpdate(const double deltaTime);
         virtual void OnEvent(Event& ev);
 
-    private:
-        void OnWindowResize(const WindowResizeEvent& ev);
-        void OnKeyPress(const KeyPressEvent& ev);
-        void OnMouseMove(const MouseMoveEvent& ev);
-        void OnMousePress(const MousePressEvent& ev);
-        void OnMouseRelease(const MouseReleaseEvent& ev);
+    protected:
+        virtual void OnWindowResize(const WindowResizeEvent& ev);
+        virtual void OnKeyPress(const KeyPressEvent& ev);
+        virtual void OnMouseMove(const MouseMoveEvent& ev);
+        virtual void OnMousePress(const MousePressEvent& ev);
+        virtual void OnMouseRelease(const MouseReleaseEvent& ev);
     };
 }

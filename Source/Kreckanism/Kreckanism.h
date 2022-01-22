@@ -27,6 +27,7 @@
 #include <Kreckanism/Render/API/OpenGL/VertexBuffer.h>
 #include <Kreckanism/Render/Mesh.h>
 #include <Kreckanism/Render/PerspectiveCamera.h>
+#include <Kreckanism/Render/PrimitiveFactory.h>
 #include <Kreckanism/Render/Renderer.h>
 #include <Kreckanism/Render/Vertex.h>
 

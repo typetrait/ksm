@@ -6,7 +6,8 @@
 
 namespace Ksm
 {
-    PerspectiveCamera::PerspectiveCamera(float fov, float aspect, float zNear, float zFar, const glm::vec3& position) : fov(fov), aspect(aspect), zNear(zNear), zFar(zFar), position(position)
+    PerspectiveCamera::PerspectiveCamera(float fov, float aspect, float zNear, float zFar, const glm::vec3& position)
+        : fov(fov), aspect(aspect), zNear(zNear), zFar(zFar), position(position)
     {
         projection = glm::perspective(glm::radians(fov), aspect, zNear, zFar);
 
@@ -46,5 +47,11 @@ namespace Ksm
     void PerspectiveCamera::SetPosition(const glm::vec3& position)
     {
         this->position = position;
+    }
+
+    void PerspectiveCamera::SetAspectRatio(const float aspect)
+    {
+        this->aspect = aspect;
+        projection = glm::perspective(glm::radians(fov), aspect, zNear, zFar);
     }
 }

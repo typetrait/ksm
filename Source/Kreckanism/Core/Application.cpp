@@ -14,6 +14,11 @@
 
 namespace Ksm
 {
+    void Application::OnUpdate(const double deltaTime)
+    {
+
+    }
+
     void Application::OnEvent(Event& e)
     {
         EventDispatcher dispatcher(e);
@@ -43,19 +48,14 @@ namespace Ksm
         });
     }
 
-    void Application::OnUpdate(const double deltaTime)
-    {
-
-    }
-
     void Application::OnWindowResize(const WindowResizeEvent& ev)
     {
-        KLOG_INFO(fmt::format("Window resized: Width={}, Height={}.", ev.GetWidth(), ev.GetHeight()));
+        //KLOG_INFO(fmt::format("Window resized: Width={}, Height={}.", ev.GetWidth(), ev.GetHeight()));
     }
 
     void Application::OnKeyPress(const KeyPressEvent& ev)
     {
-        KLOG_INFO(fmt::format("Key pressed: KeyCode={}.", ev.GetKeyCode()));
+        //KLOG_INFO(fmt::format("Key pressed: KeyCode={}.", ev.GetKeyCode()));
     }
 
     void Application::OnMouseMove(const MouseMoveEvent& ev)
@@ -65,11 +65,11 @@ namespace Ksm
 
     void Application::OnMousePress(const MousePressEvent& ev)
     {
-        KLOG_INFO(fmt::format("Mouse pressed: Button={}.", ev.GetButton()));
+        ///KLOG_INFO(fmt::format("Mouse pressed: Button={}.", ev.GetButton()));
     }
 
     void Application::OnMouseRelease(const MouseReleaseEvent& ev)
     {
-        KLOG_INFO(fmt::format("Mouse released: Button={}.", ev.GetButton()));
+        ///KLOG_INFO(fmt::format("Mouse released: Button={}.", ev.GetButton()));
     }
 }
