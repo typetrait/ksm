@@ -15,6 +15,7 @@ namespace Ksm
         const glm::vec3& GetPosition() const;
         void SetPosition(const glm::vec3& position);
         void SetAspectRatio(const float aspect);
+        void Update(glm::vec2 cursorDelta);
 
     private:
         float fov;

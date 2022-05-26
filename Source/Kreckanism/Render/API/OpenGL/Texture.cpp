@@ -9,14 +9,14 @@
 
 namespace Ksm
 {
-    Texture::Texture(const std::string& path) : path(path)
+    Texture::Texture(const std::string& path, bool flip) : path(path)
     {
         int width = 0;
         int height = 0;
         int channelCount = 0;
         unsigned char* data = nullptr;
 
-        stbi_set_flip_vertically_on_load(true);
+        stbi_set_flip_vertically_on_load(flip);
         data = stbi_load(path.c_str(), &width, &height, &channelCount, 0);
 
         if (data)

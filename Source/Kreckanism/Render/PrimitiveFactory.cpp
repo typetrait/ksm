@@ -1,6 +1,7 @@
 #include <Kreckanism/Render/PrimitiveFactory.h>
 
 #include <cmath>
+#include <map>
 
 #include <Kreckanism/Render/Mesh.h>
 #include <Kreckanism/Render/Vertex.h>

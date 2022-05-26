@@ -10,7 +10,7 @@ This project relies on the <a href="https://www.autodesk.com/developer-network/p
 
 ### Cloning
 ```
-git clone --recursive https://github.com/afxw/kreckanism.git
+git clone --recursive https://github.com/afxw/ksm-dare.git
 ```
 
 ### Compiling

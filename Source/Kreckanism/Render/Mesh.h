@@ -18,6 +18,8 @@ namespace Ksm
         std::shared_ptr<VertexBuffer>& GetVertexBuffer();
         std::shared_ptr<IndexBuffer>& GetIndexBuffer();
         std::vector<Vertex> GetVertices();
+        std::vector<unsigned int> GetIndices();
+        unsigned int GetNumVertices();
 
     private:
         std::vector<Vertex> vertices;

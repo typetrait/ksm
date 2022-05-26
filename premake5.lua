@@ -2,7 +2,7 @@
 
 workspace "Kreckanism"
     configurations { "Debug", "Release" }
-    startproject "Demo"
+    startproject "Sphectory"
     architecture "x86_64"
 
 include "ThirdParty/glad.lua"
@@ -11,4 +11,4 @@ include "ThirdParty/imgui.lua"
 include "ThirdParty/fmt.lua"
 
 include "Source/Kreckanism"
-include "Source/Demo"
+include "Source/Sphectory"

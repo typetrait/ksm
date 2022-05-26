@@ -9,6 +9,7 @@ namespace Ksm
     class Shader
     {
     public:
+        Shader();
         Shader(const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
         ~Shader();
         void Bind() const;
@@ -20,7 +21,8 @@ namespace Ksm
         void SetUniform(const std::string& name, const glm::vec4& vector) const;
         void SetUniform(const std::string& name, const glm::mat3& matrix) const;
         void SetUniform(const std::string& name, const glm::mat4& matrix) const;
-    private:
+        void SetUniform(const std::string& name, int* arr, int size) const;
+    protected:
         unsigned int id;
     };
 }

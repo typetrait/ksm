@@ -3,6 +3,7 @@
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
 
 namespace Ksm
 {
@@ -53,5 +54,12 @@ namespace Ksm
     {
         this->aspect = aspect;
         projection = glm::perspective(glm::radians(fov), aspect, zNear, zFar);
+    }
+
+    void PerspectiveCamera::Update(glm::vec2 cursorDelta)
+    {
+        forward = glm::mat3(glm::rotate(cursorDelta.x * 0.0025f, up)) * forward;
+        forward = glm::mat3(glm::rotate(cursorDelta.y * 0.0025f, right)) * forward;
+        right = glm::normalize(glm::cross(up, position));
     }
 }

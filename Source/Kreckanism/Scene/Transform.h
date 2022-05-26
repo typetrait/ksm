@@ -9,5 +9,6 @@ namespace Ksm
         glm::vec3 Position;
         glm::vec3 Rotation;
         glm::vec3 Scale;
+        float RotationAngle;
     };
 }

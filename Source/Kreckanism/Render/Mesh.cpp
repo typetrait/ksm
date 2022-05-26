@@ -64,4 +64,14 @@ namespace Ksm
     {
         return vertices;
     }
+
+    std::vector<unsigned int> Mesh::GetIndices()
+    {
+        return indices;
+    }
+
+    unsigned int Mesh::GetNumVertices()
+    {
+        return (unsigned int)vertices.size();
+    }
 }

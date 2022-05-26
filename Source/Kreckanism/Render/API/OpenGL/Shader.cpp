@@ -7,6 +7,11 @@
 
 namespace Ksm
 {
+    Shader::Shader()
+    {
+
+    }
+
     Shader::Shader(const std::string& vertexShaderPath, const std::string& fragmentShaderPath)
     {
         auto vertexPath = std::filesystem::path(vertexShaderPath);
@@ -104,5 +109,11 @@ namespace Ksm
     {
         auto location = glGetUniformLocation(id, name.c_str());
         glUniformMatrix4fv(location, 1, false, &matrix[0][0]);
+    }
+
+    void Shader::SetUniform(const std::string& name, int* arr, int size) const
+    {
+        auto location = glGetUniformLocation(id, name.c_str());
+        glUniform1iv(location, size, arr);
     }
 }

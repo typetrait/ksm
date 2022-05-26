@@ -7,7 +7,7 @@ namespace Ksm
     class Texture
     {
     public:
-        Texture(const std::string& path);
+        Texture(const std::string& path, bool flip=true);
         ~Texture();
         void Bind();
         void Unbind();
@@ -16,6 +16,6 @@ namespace Ksm
         unsigned int id;
         unsigned int width;
         unsigned int height;
-        const std::string& path;
+        std::string path;
     };
 }

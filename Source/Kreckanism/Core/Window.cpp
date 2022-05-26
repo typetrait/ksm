@@ -5,6 +5,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <fmt/format.h>
+
 #include <Kreckanism/Core/Logger.h>
 #include <Kreckanism/Event/KeyPressEvent.h>
 #include <Kreckanism/Event/MouseMoveEvent.h>
@@ -17,9 +19,10 @@ namespace Ksm
     Window::Window(int width, int height, const std::string& title) : width(width), height(height), title(title)
     {
         glfwInit();
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 
         window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 
@@ -102,6 +105,22 @@ namespace Ksm
             WindowResizeEvent e(width, height);
             self.eventCallback(e);
         });
+
+        glDebugMessageCallback(
+            []( GLenum source,
+                GLenum type,
+                GLuint id,
+                GLenum severity,
+                GLsizei length,
+                const GLchar* message,
+                const void* userParam)
+                {
+                    if (severity == GL_DEBUG_SEVERITY_NOTIFICATION)
+                        return;
+                    KLOG_INFO(fmt::format("GLDebug: {}", message));
+                },
+            0
+        );
     }
 
     Window::~Window()
